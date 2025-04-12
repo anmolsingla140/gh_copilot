@@ -117,50 +117,28 @@
           }
         }
       },
-      "RhinoCommon/8.11.24254.15001": {
+      "RhinoCommon/7.36.23346.16351": {
         "type": "package",
         "compile": {
-          "lib/net48/Ed.Eto.dll": {
-            "related": ".xml"
-          },
           "lib/net48/Eto.dll": {
             "related": ".xml"
           },
           "lib/net48/Rhino.UI.dll": {},
           "lib/net48/RhinoCommon.dll": {
-            "related": ".xml"
+            "related": ".XML"
           }
         },
         "runtime": {
-          "lib/net48/Ed.Eto.dll": {
-            "related": ".xml"
-          },
           "lib/net48/Eto.dll": {
             "related": ".xml"
           },
           "lib/net48/Rhino.UI.dll": {},
           "lib/net48/RhinoCommon.dll": {
-            "related": ".xml"
+            "related": ".XML"
           }
         },
         "build": {
           "build/net48/RhinoCommon.targets": {}
-        }
-      },
-      "RhinoWindows/8.11.24254.15001": {
-        "type": "package",
-        "dependencies": {
-          "RhinoCommon": "[8.11.24254.15001]"
-        },
-        "compile": {
-          "lib/net48/Eto.Wpf.dll": {},
-          "lib/net48/RhinoWindows.dll": {}
-        },
-        "runtime": {
-          "lib/net48/_._": {}
-        },
-        "build": {
-          "build/net48/RhinoWindows.targets": {}
         }
       },
       "ShapeUI/0.1.20.8": {
@@ -630,40 +608,23 @@
         "packageIcon.png"
       ]
     },
-    "RhinoCommon/8.11.24254.15001": {
-      "sha512": "wgAfJniX4HPm/xPMHth9hrtqcNia5ULI+te8BVC3e6UfmF6Jz1iOmtCK5Elz3mItUMv7QfccxGLsjusMr6HHoQ==",
+    "RhinoCommon/7.36.23346.16351": {
+      "sha512": "m6fjkhhFw4DmzeyKS/A8884p3/cxjLAcmlRCePSiLWJJlyV+/GNX85UQF1tLSR3fMrCyYVoelY1I8SjYOmuNCg==",
       "type": "package",
-      "path": "rhinocommon/8.11.24254.15001",
+      "path": "rhinocommon/7.36.23346.16351",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "Eto-LICENSE.txt",
         "build/net48/RhinoCommon.targets",
-        "lib/net48/Ed.Eto.dll",
-        "lib/net48/Ed.Eto.xml",
         "lib/net48/Eto.dll",
         "lib/net48/Eto.xml",
         "lib/net48/Rhino.UI.dll",
+        "lib/net48/RhinoCommon.XML",
         "lib/net48/RhinoCommon.dll",
-        "lib/net48/RhinoCommon.xml",
-        "rhinocommon.8.11.24254.15001.nupkg.sha512",
+        "rhinocommon.7.36.23346.16351.nupkg.sha512",
         "rhinocommon.nuspec",
         "rhinocommon.png"
-      ]
-    },
-    "RhinoWindows/8.11.24254.15001": {
-      "sha512": "lh5q3VtEAbtqOgsGP/BlZ2dM9ZROIPevA2ByFYvEzRJJG/7vrM1+Gu/3643P9DOuRKV8mh+o8Eu9rjS7CZDnkQ==",
-      "type": "package",
-      "path": "rhinowindows/8.11.24254.15001",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "Eto-LICENSE.txt",
-        "build/net48/RhinoWindows.targets",
-        "lib/net48/Eto.Wpf.dll",
-        "lib/net48/RhinoWindows.dll",
-        "rhinowindows.8.11.24254.15001.nupkg.sha512",
-        "rhinowindows.nuspec"
       ]
     },
     "ShapeUI/0.1.20.8": {
@@ -1690,7 +1651,6 @@
     "net7.0-windows7.0": [
       "Grasshopper >= 7.36.23346.16351",
       "Newtonsoft.Json >= 13.0.3",
-      "RhinoWindows >= 8.11.24254.15001",
       "ShapeUI >= 0.1.20.8",
       "System.Collections >= 4.3.0",
       "System.Collections.NonGeneric >= 4.3.0"
@@ -1707,7 +1667,7 @@
       "projectName": "GrasshopperComponent",
       "projectPath": "C:\\Users\\Wileyng\\source\\repos\\gh_copilot\\GrasshopperComponent\\GrasshopperComponent.csproj",
       "packagesPath": "C:\\Users\\Wileyng\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Wileyng\\Source\\Repos\\gh_copilot\\GrasshopperComponent\\obj\\",
+      "outputPath": "C:\\Users\\Wileyng\\source\\repos\\gh_copilot\\GrasshopperComponent\\obj\\",
       "projectStyle": "PackageReference",
       "crossTargeting": true,
       "fallbackFolders": [
@@ -1758,11 +1718,6 @@
             "target": "Package",
             "version": "[13.0.3, )"
           },
-          "RhinoWindows": {
-            "include": "Compile, Build, Native, ContentFiles, Analyzers, BuildTransitive",
-            "target": "Package",
-            "version": "[8.11.24254.15001, )"
-          },
           "ShapeUI": {
             "target": "Package",
             "version": "[0.1.20.8, )"
@@ -1812,16 +1767,6 @@
   },
   "logs": [
     {
-      "code": "NU1608",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Detected package version outside of dependency constraint: Grasshopper 7.36.23346.16351 requires RhinoCommon (= 7.36.23346.16351) but version RhinoCommon 8.11.24254.15001 was resolved.",
-      "libraryId": "RhinoCommon",
-      "targetGraphs": [
-        "net7.0-windows7.0"
-      ]
-    },
-    {
       "code": "NU1701",
       "level": "Warning",
       "warningLevel": 1,
@@ -1835,18 +1780,8 @@
       "code": "NU1701",
       "level": "Warning",
       "warningLevel": 1,
-      "message": "Package 'RhinoCommon 8.11.24254.15001' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net7.0-windows7.0'. This package may not be fully compatible with your project.",
+      "message": "Package 'RhinoCommon 7.36.23346.16351' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net7.0-windows7.0'. This package may not be fully compatible with your project.",
       "libraryId": "RhinoCommon",
-      "targetGraphs": [
-        "net7.0-windows7.0"
-      ]
-    },
-    {
-      "code": "NU1701",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Package 'RhinoWindows 8.11.24254.15001' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net7.0-windows7.0'. This package may not be fully compatible with your project.",
-      "libraryId": "RhinoWindows",
       "targetGraphs": [
         "net7.0-windows7.0"
       ]

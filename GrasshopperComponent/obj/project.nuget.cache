@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "dKTY5dy3hWc=",
+  "dgSpecHash": "BjAPbTaieNY=",
   "success": true,
   "projectFilePath": "C:\\Users\\Wileyng\\source\\repos\\gh_copilot\\GrasshopperComponent\\GrasshopperComponent.csproj",
   "expectedPackageFiles": [
@@ -12,8 +12,7 @@
     "C:\\Users\\Wileyng\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
     "C:\\Users\\Wileyng\\.nuget\\packages\\microsoft.netcore.targets\\1.1.0\\microsoft.netcore.targets.1.1.0.nupkg.sha512",
     "C:\\Users\\Wileyng\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512",
-    "C:\\Users\\Wileyng\\.nuget\\packages\\rhinocommon\\8.11.24254.15001\\rhinocommon.8.11.24254.15001.nupkg.sha512",
-    "C:\\Users\\Wileyng\\.nuget\\packages\\rhinowindows\\8.11.24254.15001\\rhinowindows.8.11.24254.15001.nupkg.sha512",
+    "C:\\Users\\Wileyng\\.nuget\\packages\\rhinocommon\\7.36.23346.16351\\rhinocommon.7.36.23346.16351.nupkg.sha512",
     "C:\\Users\\Wileyng\\.nuget\\packages\\shapeui\\0.1.20.8\\shapeui.0.1.20.8.nupkg.sha512",
     "C:\\Users\\Wileyng\\.nuget\\packages\\system.buffers\\4.5.0\\system.buffers.4.5.0.nupkg.sha512",
     "C:\\Users\\Wileyng\\.nuget\\packages\\system.collections\\4.3.0\\system.collections.4.3.0.nupkg.sha512",
@@ -38,16 +37,6 @@
   ],
   "logs": [
     {
-      "code": "NU1608",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Detected package version outside of dependency constraint: Grasshopper 7.36.23346.16351 requires RhinoCommon (= 7.36.23346.16351) but version RhinoCommon 8.11.24254.15001 was resolved.",
-      "libraryId": "RhinoCommon",
-      "targetGraphs": [
-        "net7.0-windows7.0"
-      ]
-    },
-    {
       "code": "NU1701",
       "level": "Warning",
       "warningLevel": 1,
@@ -61,18 +50,8 @@
       "code": "NU1701",
       "level": "Warning",
       "warningLevel": 1,
-      "message": "Package 'RhinoCommon 8.11.24254.15001' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net7.0-windows7.0'. This package may not be fully compatible with your project.",
+      "message": "Package 'RhinoCommon 7.36.23346.16351' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net7.0-windows7.0'. This package may not be fully compatible with your project.",
       "libraryId": "RhinoCommon",
-      "targetGraphs": [
-        "net7.0-windows7.0"
-      ]
-    },
-    {
-      "code": "NU1701",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Package 'RhinoWindows 8.11.24254.15001' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net7.0-windows7.0'. This package may not be fully compatible with your project.",
-      "libraryId": "RhinoWindows",
       "targetGraphs": [
         "net7.0-windows7.0"
       ]

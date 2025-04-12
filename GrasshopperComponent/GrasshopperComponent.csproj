@@ -13,9 +13,6 @@
 
 
 	<!-- Rhino 8 packages for net7.0-windows -->
-	<ItemGroup Condition="'$(TargetFramework)'=='net7.0-windows'">
-		<PackageReference Include="RhinoWindows" Version="8.11.24254.15001" ExcludeAssets="runtime" />
-	</ItemGroup>
 
 	<ItemGroup>
 		<PackageReference Include="Grasshopper" Version="7.36.23346.16351" />
@@ -27,10 +24,7 @@
 
 	<ItemGroup>
 		<Reference Include="Newtonsoft.Json">
-			<HintPath>..\..\ShapeUI\bin\x64\Debug\net48\Newtonsoft.Json.dll</HintPath>
-		</Reference>
-		<Reference Include="ShapeUI">
-			<HintPath>..\..\ShapeUI\bin\x64\Debug\net48\ShapeUI.dll</HintPath>
+			<HintPath>Dependencies\Newtonsoft.Json.dll</HintPath>
 		</Reference>
 	</ItemGroup>
 
