@@ -22,6 +22,7 @@ namespace Copilot
         private string _lastResponse = "";
         public Popup Sidebar;
         public TextBox UserInput;
+        public TextBox Response;
         public PopupChatComponent() : base(
             "Popup Chat",
             "Chat",
@@ -29,6 +30,8 @@ namespace Copilot
             "Custom",
             "Communication")
         {
+            //Runtime.PythonDLL = @"C:\Users\wiley\AppData\Local\Programs\Python\Python310\python310.dll";
+
         }
 
         protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
@@ -48,6 +51,8 @@ namespace Copilot
             UI.StyleSetter.SetWindowStyles();
             Grasshopper.Instances.ActiveCanvas.KeyDown -= Canvas_KeyDown;
             Grasshopper.Instances.ActiveCanvas.KeyDown += Canvas_KeyDown;
+
+            PythonEngine.Initialize();
 
             GH_Canvas canvas = Grasshopper.Instances.ActiveCanvas;
             canvas.ClientSizeChanged -= Canvas_ClientSizeChanged;
@@ -87,7 +92,7 @@ namespace Copilot
                 Spacing = new Size(4, 4),
                 BackgroundColor = Eto.Drawing.Colors.Transparent
             };
-
+            overallLayout.BeginVertical();
             overallLayout.BeginHorizontal();
             //overallLayout.Add(new Panel { Width = 200,Height = 500 });
             overallLayout.Add(new LabelBuilder("      Copilot")
@@ -100,10 +105,23 @@ namespace Copilot
                             .SetClickAction((b) => { Sidebar?.Close(); })
                             .SetBackgroundColor(Eto.Drawing.Colors.Transparent)
                             .Build(), xscale: false);
-            overallLayout.EndBeginHorizontal();
-            var text = new LabelBuilder("TestingTesting").AddStyle(LabelFont.Content).SetTextAlignment(TextAlignment.Center).Build();
-            overallLayout.Add(new Panel { Content = text, Width = 200, Height = 500 });
-            overallLayout.EndBeginHorizontal();
+
+            overallLayout.EndHorizontal();
+            overallLayout.EndBeginVertical();
+            overallLayout.BeginHorizontal();
+
+            Response = new TextBox
+            {
+
+                BackgroundColor = new Color(255, 255, 255, 155),
+                TextColor = Eto.Drawing.Colors.White,
+                ReadOnly = true
+            };
+            
+            overallLayout.Add(new Panel { Content = Response, Height = 500 });
+            overallLayout.EndHorizontal();
+            overallLayout.EndBeginVertical();
+            overallLayout.BeginHorizontal();
             UserInput = new TextBox { Width = 200, Height = 30, BackgroundColor = new Color(255, 255, 255, 155), TextColor = Eto.Drawing.Colors.White };
             UserInput.KeyDown -= TextBox_KeyDown;
             UserInput.KeyDown += TextBox_KeyDown;
@@ -284,11 +302,10 @@ namespace Copilot
                     string appDataPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
 
                     // Construct the full path to the TT folder
-                    string ttPath = System.IO.Path.Combine(appDataPath, @"Grasshopper\Libraries\CopilotScripts");
+                    string ttPath = System.IO.Path.Combine(appDataPath, @"Grasshopper\Libraries\PythonScripts");
 
                     // Append the resolved path to Python's sys.path
                     sys.path.append(ttPath);
-
                     dynamic _ghScript = PyNet.Import("grasshopper_component_finder");
 
                     if (_ghScript == null)
@@ -303,7 +320,11 @@ namespace Copilot
 
                     dynamic ghScriptClass = _ghScript.GetAttr("grasshopper_component_finder");
                     dynamic ghScriptInstance = ghScriptClass.Invoke();
-                    _lastResponse = ghScriptInstance.main(query, @"C:\Users\Wileyng\source\repos\gh_copilot\GrasshopperComponent\PythonScripts\grasshopper_components.json", "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", @"C:\Users\Wileyng\source\repos\gh_copilot\GrasshopperComponent\PythonScripts\response.json");
+                    PyObject result = ghScriptInstance.main(query, @"C:\Users\wiley\AppData\Roaming\Grasshopper\Libraries\PythonScripts\grasshopper_components.json", "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", @"C:\Users\wiley\AppData\Roaming\Grasshopper\Libraries\PythonScripts\response.json");
+
+
+                    Response.Text = result.ToString();
+                    Response.Invalidate();
                 }
             }
             catch (Exception ex)

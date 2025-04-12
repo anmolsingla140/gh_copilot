@@ -117,7 +117,7 @@
           }
         }
       },
-      "pythonnet/3.0.5": {
+      "pythonnet/3.1.0-preview2024-09-06": {
         "type": "package",
         "dependencies": {
           "Microsoft.CSharp": "4.7.0",
@@ -664,10 +664,10 @@
         "packageIcon.png"
       ]
     },
-    "pythonnet/3.0.5": {
-      "sha512": "20UVeB1uDpvCHZi8yNv7VCSUKVRRaxPZWFYhkO+BjfBB9GgOh2vEeucy3U7zTY8xEVCHf2XHpRNfAU/3quxXZw==",
+    "pythonnet/3.1.0-preview2024-09-06": {
+      "sha512": "WzO+PLSEPSrsgwLUeXxC+E2KVJRACpAD8mzfwKAow4OaNMeW6RrzRRfj6tXuTsutWnRI1134SjeTu17nesHZxA==",
       "type": "package",
-      "path": "pythonnet/3.0.5",
+      "path": "pythonnet/3.1.0-preview2024-09-06",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -675,7 +675,8 @@
         "README.md",
         "lib/netstandard2.0/Python.Runtime.dll",
         "lib/netstandard2.0/Python.Runtime.xml",
-        "pythonnet.3.0.5.nupkg.sha512",
+        "python-clear.png",
+        "pythonnet.3.1.0-preview2024-09-06.nupkg.sha512",
         "pythonnet.nuspec"
       ]
     },
@@ -701,7 +702,7 @@
       ]
     },
     "ShapeUI/0.1.20.8": {
-      "sha512": "VNcj3s0Xf6X/WRIUUR1N2LrfN7JuGbau8xMDVVhGT49JJh4195ua4LPrRB1MCEMeAM9s7IJjXOb7XHGG/O4UiQ==",
+      "sha512": "gyRTloOp9V4bKi6U0T1ku16JC0vyJsiY/c2TBj7ORMDGgKDruilMuDGfPvLV3u5xF/vfSSZpVPgTA0t7pHZJ3Q==",
       "type": "package",
       "path": "shapeui/0.1.20.8",
       "files": [
@@ -1801,28 +1802,28 @@
       "ShapeUI >= 0.1.20.8",
       "System.Collections >= 4.3.0",
       "System.Collections.NonGeneric >= 4.3.0",
-      "pythonnet >= 3.0.5"
+      "pythonnet >= 3.1.0-preview2024-09-06"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Wileyng\\.nuget\\packages\\": {},
+    "C:\\Users\\wiley\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Wileyng\\source\\repos\\gh_copilot\\GrasshopperComponent\\GrasshopperComponent.csproj",
+      "projectUniqueName": "C:\\Users\\wiley\\Source\\Repos\\gh_copilot\\GrasshopperComponent\\GrasshopperComponent.csproj",
       "projectName": "GrasshopperComponent",
-      "projectPath": "C:\\Users\\Wileyng\\source\\repos\\gh_copilot\\GrasshopperComponent\\GrasshopperComponent.csproj",
-      "packagesPath": "C:\\Users\\Wileyng\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Wileyng\\source\\repos\\gh_copilot\\GrasshopperComponent\\obj\\",
+      "projectPath": "C:\\Users\\wiley\\Source\\Repos\\gh_copilot\\GrasshopperComponent\\GrasshopperComponent.csproj",
+      "packagesPath": "C:\\Users\\wiley\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\wiley\\Source\\Repos\\gh_copilot\\GrasshopperComponent\\obj\\",
       "projectStyle": "PackageReference",
       "crossTargeting": true,
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\Wileyng\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\wiley\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -1831,7 +1832,7 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Users\\Wileyng\\source\\repos\\ShapeUI\\bin\\Debug": {},
+        "C:\\Users\\wiley\\source\\repos\\ShapeUI\\bin\\Debug": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -1850,7 +1851,7 @@
         "auditLevel": "low",
         "auditMode": "direct"
       },
-      "SdkAnalysisLevel": "9.0.200"
+      "SdkAnalysisLevel": "9.0.100"
     },
     "frameworks": {
       "net7.0-windows7.0": {
@@ -1878,7 +1879,7 @@
           },
           "pythonnet": {
             "target": "Package",
-            "version": "[3.0.5, )"
+            "version": "[3.1.0-preview2024-09-06, )"
           }
         },
         "imports": [
@@ -1892,26 +1893,12 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
-        "downloadDependencies": [
-          {
-            "name": "Microsoft.AspNetCore.App.Ref",
-            "version": "[7.0.20, 7.0.20]"
-          },
-          {
-            "name": "Microsoft.NETCore.App.Ref",
-            "version": "[7.0.20, 7.0.20]"
-          },
-          {
-            "name": "Microsoft.WindowsDesktop.App.Ref",
-            "version": "[7.0.20, 7.0.20]"
-          }
-        ],
         "frameworkReferences": {
           "Microsoft.NETCore.App": {
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.200\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.102\\RuntimeIdentifierGraph.json"
       }
     }
   },
