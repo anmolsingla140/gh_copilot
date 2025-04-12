@@ -1,0 +1,57 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\VWarule\\Documents\\GitHub\\GH.Copilot\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{D837A448-7F63-4A75-9377-9A23E2503802}|GrasshopperComponent\\GrasshopperComponent.csproj|c:\\users\\vwarule\\documents\\github\\gh.copilot\\grasshoppercomponent\\chatcomponent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D837A448-7F63-4A75-9377-9A23E2503802}|GrasshopperComponent\\GrasshopperComponent.csproj|solutionrelative:grasshoppercomponent\\chatcomponent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D837A448-7F63-4A75-9377-9A23E2503802}|GrasshopperComponent\\GrasshopperComponent.csproj|c:\\users\\vwarule\\documents\\github\\gh.copilot\\grasshoppercomponent\\grasshoppercomponent.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|",
+      "RelativeMoniker": "D:0:0:{D837A448-7F63-4A75-9377-9A23E2503802}|GrasshopperComponent\\GrasshopperComponent.csproj|solutionrelative:grasshoppercomponent\\grasshoppercomponent.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 203,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "GrasshopperComponent",
+              "DocumentMoniker": "C:\\Users\\VWarule\\Documents\\GitHub\\GH.Copilot\\GrasshopperComponent\\GrasshopperComponent.csproj",
+              "RelativeDocumentMoniker": "GrasshopperComponent\\GrasshopperComponent.csproj",
+              "ToolTip": "C:\\Users\\VWarule\\Documents\\GitHub\\GH.Copilot\\GrasshopperComponent\\GrasshopperComponent.csproj",
+              "RelativeToolTip": "GrasshopperComponent\\GrasshopperComponent.csproj",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-04-12T14:13:10.227Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "ChatComponent.cs",
+              "DocumentMoniker": "C:\\Users\\VWarule\\Documents\\GitHub\\GH.Copilot\\GrasshopperComponent\\ChatComponent.cs",
+              "RelativeDocumentMoniker": "GrasshopperComponent\\ChatComponent.cs",
+              "ToolTip": "C:\\Users\\VWarule\\Documents\\GitHub\\GH.Copilot\\GrasshopperComponent\\ChatComponent.cs",
+              "RelativeToolTip": "GrasshopperComponent\\ChatComponent.cs",
+              "ViewState": "AgIAAC4BAAAAAAAAAAAYwDwBAABFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-12T11:46:09.078Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

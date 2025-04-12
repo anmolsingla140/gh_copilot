@@ -1,11 +1,14 @@
 {
   "version": 2,
-  "dgSpecHash": "+mBdhPAsKW8=",
+  "dgSpecHash": "Luqe4gK/EsI=",
   "success": true,
-  "projectFilePath": "D:\\Personal Projects\\GH_copilot\\GrasshopperComponent\\GrasshopperComponent.csproj",
+  "projectFilePath": "C:\\Users\\VWarule\\Documents\\GitHub\\GH.Copilot\\GrasshopperComponent\\GrasshopperComponent.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\921241\\.nuget\\packages\\grasshopper\\8.0.23066.13185-wip\\grasshopper.8.0.23066.13185-wip.nupkg.sha512",
-    "C:\\Users\\921241\\.nuget\\packages\\rhinocommon\\8.0.23066.13185-wip\\rhinocommon.8.0.23066.13185-wip.nupkg.sha512"
+    "C:\\Users\\VWarule\\.nuget\\packages\\grasshopper\\8.0.23066.13185-wip\\grasshopper.8.0.23066.13185-wip.nupkg.sha512",
+    "C:\\Users\\VWarule\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
+    "C:\\Users\\VWarule\\.nuget\\packages\\pythonnet\\3.0.5\\pythonnet.3.0.5.nupkg.sha512",
+    "C:\\Users\\VWarule\\.nuget\\packages\\rhinocommon\\8.0.23066.13185-wip\\rhinocommon.8.0.23066.13185-wip.nupkg.sha512",
+    "C:\\Users\\VWarule\\.nuget\\packages\\system.reflection.emit\\4.3.0\\system.reflection.emit.4.3.0.nupkg.sha512"
   ],
   "logs": []
 }

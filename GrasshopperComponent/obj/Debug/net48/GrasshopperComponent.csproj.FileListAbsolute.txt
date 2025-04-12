@@ -9,3 +9,13 @@ D:\Personal Projects\GH_copilot\GrasshopperComponent\obj\Debug\net48\Grasshopper
 D:\Personal Projects\GH_copilot\GrasshopperComponent\bin\Debug\net48\GrasshopperComponent.pdb
 D:\Personal Projects\GH_copilot\GrasshopperComponent\bin\Debug\net48\GrasshopperComponent.gha
 D:\Personal Projects\GH_copilot\GrasshopperComponent\obj\Debug\net48\GrasshopperComponent.gha
+C:\Users\VWarule\Documents\GitHub\GH.Copilot\GrasshopperComponent\bin\Debug\net48\GrasshopperComponent.gha
+C:\Users\VWarule\Documents\GitHub\GH.Copilot\GrasshopperComponent\bin\Debug\net48\GrasshopperComponent.pdb
+C:\Users\VWarule\Documents\GitHub\GH.Copilot\GrasshopperComponent\obj\Debug\net48\GrasshopperComponent.csproj.AssemblyReference.cache
+C:\Users\VWarule\Documents\GitHub\GH.Copilot\GrasshopperComponent\obj\Debug\net48\GrasshopperComponent.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\VWarule\Documents\GitHub\GH.Copilot\GrasshopperComponent\obj\Debug\net48\GrasshopperComponent.AssemblyInfoInputs.cache
+C:\Users\VWarule\Documents\GitHub\GH.Copilot\GrasshopperComponent\obj\Debug\net48\GrasshopperComponent.AssemblyInfo.cs
+C:\Users\VWarule\Documents\GitHub\GH.Copilot\GrasshopperComponent\obj\Debug\net48\GrasshopperComponent.csproj.CoreCompileInputs.cache
+C:\Users\VWarule\Documents\GitHub\GH.Copilot\GrasshopperComponent\obj\Debug\net48\GrasshopperComponent.sourcelink.json
+C:\Users\VWarule\Documents\GitHub\GH.Copilot\GrasshopperComponent\obj\Debug\net48\GrasshopperComponent.gha
+C:\Users\VWarule\Documents\GitHub\GH.Copilot\GrasshopperComponent\obj\Debug\net48\GrasshopperComponent.pdb

@@ -1,5 +1,8 @@
 is_global = true
 build_property.RootNamespace = GrasshopperComponent
-build_property.ProjectDir = D:\Personal Projects\GH_copilot\GrasshopperComponent\
+build_property.ProjectDir = C:\Users\VWarule\Documents\GitHub\GH.Copilot\GrasshopperComponent\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
+build_property.CsWinRTUseWindowsUIXamlProjections = false
+build_property.EffectiveAnalysisLevelStyle = 
+build_property.EnableCodeStyleSeverity = 
