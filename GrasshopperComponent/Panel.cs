@@ -175,7 +175,7 @@
 //        protected override void SolveInstance(IGH_DataAccess DA)
 //        {
 //            string query = "";
-//            if (!DA.GetData(2, ref query)) { return; }
+//            if (!DA.GetData(, ref query)) { return; }
 
 //            try
 //            {

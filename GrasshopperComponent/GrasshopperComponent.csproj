@@ -3,7 +3,7 @@
   <!-- Post-build event to copy the .gha to Grasshopper Libraries folder -->
   <PropertyGroup>
 	  <TargetFrameworks>net7.0-windows</TargetFrameworks>
-	  <!--<TargetExt>.gha</TargetExt>-->
+	  <TargetExt>.gha</TargetExt>
   </PropertyGroup>
 
   <ItemGroup>
@@ -14,8 +14,9 @@
     <PackageReference Include="System.Collections" Version="4.3.0" />
     <PackageReference Include="System.Collections.NonGeneric" Version="4.3.0" />
   </ItemGroup>
-
-  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-    <Exec Command="Copy &quot;C:\Users\Wileyng\source\repos\gh_copilot\GrasshopperComponent\bin\Debug\net7.0-windows\GrasshopperComponent.dll&quot; &#xD;&#xA;&quot;%25AppData%25\Grasshopper\Libraries\GrasshopperComponent.gha&quot;&#xD;&#xA;     if exist &quot;%25AppData%25\Grasshopper\Libraries\PythonScripts&quot; (&#xD;&#xA;         if not exist &quot;%25AppData%25\Grasshopper\Libraries\PythonScripts\*&quot; (&#xD;&#xA;             rmdir /S /Q &quot;%25AppData%25\Grasshopper\Libraries\PythonScripts&quot;&#xD;&#xA;         )&#xD;&#xA;     )" />
-  </Target>
+	<ItemGroup>
+		<Content Include="PythonScripts\**\*">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+	</ItemGroup>
   </Project>

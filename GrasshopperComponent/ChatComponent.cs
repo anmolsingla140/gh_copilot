@@ -11,7 +11,8 @@ using Grasshopper.Kernel.Data;
 using UI;
 using Eto.Forms;
 using Eto.Drawing;
-
+using Python.Runtime;
+using PyNet = Python.Runtime.Py;
 
 namespace Copilot
 {
@@ -263,20 +264,53 @@ namespace Copilot
         }
         private void Commit()
         {
-            string message = UserInput.Text.Trim();
-            if (string.IsNullOrEmpty(message)) return;
+            //string message = UserInput.Text.Trim();
+            if (string.IsNullOrEmpty(UserInput.Text)) return;
 
+            Solve(UserInput.Text);
 
-            // For now, just return "Hello" as the response
-            //string response = "Hello";
-
-            // Notify the component that a response was generated
-            //ResponseGenerated?.Invoke(this, response);
-
-            // Close the form
-            //this.Close();
             UserInput.Text = "";
 
+        }
+
+        private void Solve(string query)
+        {
+            try
+            {
+                using (PyNet.GIL()) // Acquire the Global Interpreter Lock
+                {
+                    dynamic sys = PyNet.Import("sys");
+                    // Resolve %AppData% to its full path
+                    string appDataPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+
+                    // Construct the full path to the TT folder
+                    string ttPath = System.IO.Path.Combine(appDataPath, @"Grasshopper\Libraries\CopilotScripts");
+
+                    // Append the resolved path to Python's sys.path
+                    sys.path.append(ttPath);
+
+                    dynamic _ghScript = PyNet.Import("grasshopper_component_finder");
+
+                    if (_ghScript == null)
+                    {
+                        AddRuntimeMessage(GH_RuntimeMessageLevel.Error, "The Python module was not initialized correctly.");
+                        return;
+                    }
+
+                    //temporary
+                    string arg1 = "";
+                    string arg2 = "";
+
+                    dynamic ghScriptClass = _ghScript.GetAttr("grasshopper_component_finder");
+                    dynamic ghScriptInstance = ghScriptClass.Invoke();
+                    _lastResponse = ghScriptInstance.main(query, @"C:\Users\Wileyng\source\repos\gh_copilot\GrasshopperComponent\PythonScripts\grasshopper_components.json", "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", @"C:\Users\Wileyng\source\repos\gh_copilot\GrasshopperComponent\PythonScripts\response.json");
+                }
+            }
+            catch (Exception ex)
+            {
+                AddRuntimeMessage(GH_RuntimeMessageLevel.Error, "Error while executing Python function: " + ex.Message);
+                return;
+            }
         }
         public override Guid ComponentGuid
         {
