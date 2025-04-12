@@ -19,3 +19,26 @@ C:\Users\VWarule\Documents\GitHub\GH.Copilot\GrasshopperComponent\obj\Debug\net4
 C:\Users\VWarule\Documents\GitHub\GH.Copilot\GrasshopperComponent\obj\Debug\net48\GrasshopperComponent.sourcelink.json
 C:\Users\VWarule\Documents\GitHub\GH.Copilot\GrasshopperComponent\obj\Debug\net48\GrasshopperComponent.gha
 C:\Users\VWarule\Documents\GitHub\GH.Copilot\GrasshopperComponent\obj\Debug\net48\GrasshopperComponent.pdb
+C:\Users\VWarule\Documents\GitHub\GH.Copilot\GrasshopperComponent\obj\Debug\net48\GrasshopperComponent.Properties.Resources.resources
+C:\Users\VWarule\Documents\GitHub\GH.Copilot\GrasshopperComponent\obj\Debug\net48\GrasshopperComponent.csproj.GenerateResource.cache
+C:\Users\VWarule\Documents\GitHub\GH.Copilot\GrasshopperComponent\bin\Debug\net48\PythonScripts\Additional files\claude_api.txt
+C:\Users\VWarule\Documents\GitHub\GH.Copilot\GrasshopperComponent\bin\Debug\net48\PythonScripts\Additional files\grasshopper_component_finder_v0.py
+C:\Users\VWarule\Documents\GitHub\GH.Copilot\GrasshopperComponent\bin\Debug\net48\PythonScripts\Additional files\grasshopper_component_scrapper.py
+C:\Users\VWarule\Documents\GitHub\GH.Copilot\GrasshopperComponent\bin\Debug\net48\PythonScripts\Additional files\python_script_command.txt
+C:\Users\VWarule\Documents\GitHub\GH.Copilot\GrasshopperComponent\bin\Debug\net48\PythonScripts\grasshopper_components.json
+C:\Users\VWarule\Documents\GitHub\GH.Copilot\GrasshopperComponent\bin\Debug\net48\PythonScripts\grasshopper_component_finder.py
+C:\Users\VWarule\Documents\GitHub\GH.Copilot\GrasshopperComponent\bin\Debug\net48\Microsoft.AspNetCore.WebUtilities.dll
+C:\Users\VWarule\Documents\GitHub\GH.Copilot\GrasshopperComponent\bin\Debug\net48\Microsoft.Extensions.Primitives.dll
+C:\Users\VWarule\Documents\GitHub\GH.Copilot\GrasshopperComponent\bin\Debug\net48\Microsoft.Net.Http.Headers.dll
+C:\Users\VWarule\Documents\GitHub\GH.Copilot\GrasshopperComponent\bin\Debug\net48\Newtonsoft.Json.dll
+C:\Users\VWarule\Documents\GitHub\GH.Copilot\GrasshopperComponent\bin\Debug\net48\Python.Runtime.dll
+C:\Users\VWarule\Documents\GitHub\GH.Copilot\GrasshopperComponent\bin\Debug\net48\Ed.Eto.dll
+C:\Users\VWarule\Documents\GitHub\GH.Copilot\GrasshopperComponent\bin\Debug\net48\ShapeUI.dll
+C:\Users\VWarule\Documents\GitHub\GH.Copilot\GrasshopperComponent\bin\Debug\net48\resvg.dll
+C:\Users\VWarule\Documents\GitHub\GH.Copilot\GrasshopperComponent\bin\Debug\net48\System.Buffers.dll
+C:\Users\VWarule\Documents\GitHub\GH.Copilot\GrasshopperComponent\bin\Debug\net48\System.Memory.dll
+C:\Users\VWarule\Documents\GitHub\GH.Copilot\GrasshopperComponent\bin\Debug\net48\System.Numerics.Vectors.dll
+C:\Users\VWarule\Documents\GitHub\GH.Copilot\GrasshopperComponent\bin\Debug\net48\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\VWarule\Documents\GitHub\GH.Copilot\GrasshopperComponent\bin\Debug\net48\System.Text.Encodings.Web.dll
+C:\Users\VWarule\Documents\GitHub\GH.Copilot\GrasshopperComponent\obj\Debug\net48\Grasshop.C6F752EB.Up2Date
+C:\Users\VWarule\Documents\GitHub\GH.Copilot\GrasshopperComponent\bin\Debug\net48\PythonScripts\response.json

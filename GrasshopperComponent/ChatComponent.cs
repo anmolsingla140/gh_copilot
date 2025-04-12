@@ -1,5 +1,5 @@
 using System;
-using SWF = System.Windows.Forms;
+using SWF = System.Windows.Forms; // Corrected namespace for Forms
 using Grasshopper.Kernel;
 using Grasshopper.GUI;
 using Grasshopper.GUI.Canvas;
@@ -19,6 +19,7 @@ namespace Copilot
     public class PopupChatComponent : GH_Component
     {
         //private static PopupChatForm _chatForm = null;
+        private dynamic result;
         private string _lastResponse = "";
         public Popup Sidebar;
         public TextBox UserInput;
@@ -31,10 +32,12 @@ namespace Copilot
         {
         }
 
-        protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
+        protected override void RegisterInputParams(GH_InputParamManager pManager)
         {
-            // No inputs needed as it's triggered by keyboard shortcut
+            pManager.AddTextParameter("Query", "Q", "Input query string", GH_ParamAccess.item);
+            pManager.AddTextParameter("API Key", "K", "API key string", GH_ParamAccess.item);
         }
+
 
         protected override void RegisterOutputParams(GH_Component.GH_OutputParamManager pManager)
         {
@@ -255,6 +258,46 @@ namespace Copilot
 
         protected override void SolveInstance(IGH_DataAccess DA)
         {
+            string query = "";
+            if (!DA.GetData(0, ref query)) { return; }
+            string apiKey = "";
+            if (!DA.GetData(1, ref apiKey)) { return; }
+
+            try
+            {
+                using (PyNet.GIL()) // Acquire the Global Interpreter Lock
+                {
+                    dynamic sys = PyNet.Import("sys");
+                    // Resolve %AppData% to its full path
+                    string appDataPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+
+                    // Construct the full path to the TT folder
+                    string ttPath = System.IO.Path.Combine(appDataPath, @"Grasshopper\Libraries\Copilot\PythonScripts");
+
+                    // Append the resolved path to Python's sys.path
+                    sys.path.append(ttPath);
+
+                    dynamic _ghScript = PyNet.Import("grasshopper_component_finder");
+
+                    if (_ghScript == null)
+                    {
+                        AddRuntimeMessage(GH_RuntimeMessageLevel.Error, "The Python module was not initialized correctly.");
+                        return;
+                    }
+
+                    dynamic ghScriptClass = _ghScript.GetAttr("grasshopper_component_finder");
+                    dynamic ghScriptInstance = ghScriptClass.Invoke();
+                    result = ghScriptInstance.main(query, @"C:\Users\VWarule\Documents\GitHub\GH.Copilot\GrasshopperComponent\PythonScripts\grasshopper_components.json", apiKey, @"C:\Users\VWarule\Documents\GitHub\GH.Copilot\GrasshopperComponent\PythonScripts\response.json");
+
+                    _lastResponse = result.ToString();
+                }
+            }
+            catch (Exception ex)
+            {
+                AddRuntimeMessage(GH_RuntimeMessageLevel.Error, "Error while executing Python function: " + ex.Message);
+                return;
+            }
+
             DA.SetData(0, _lastResponse);
         }
 
@@ -297,13 +340,11 @@ namespace Copilot
                         return;
                     }
 
-                    //temporary
-                    string arg1 = "";
-                    string arg2 = "";
-
                     dynamic ghScriptClass = _ghScript.GetAttr("grasshopper_component_finder");
                     dynamic ghScriptInstance = ghScriptClass.Invoke();
-                    _lastResponse = ghScriptInstance.main(query, @"C:\Users\Wileyng\source\repos\gh_copilot\GrasshopperComponent\PythonScripts\grasshopper_components.json", "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", @"C:\Users\Wileyng\source\repos\gh_copilot\GrasshopperComponent\PythonScripts\response.json");
+                    result = ghScriptInstance.main(query, @"C:\Users\Wileyng\source\repos\gh_copilot\GrasshopperComponent\PythonScripts\grasshopper_components.json", "", @"C:\Users\Wileyng\source\repos\gh_copilot\GrasshopperComponent\PythonScripts\response.json");
+
+                    _lastResponse = result.ToString();
                 }
             }
             catch (Exception ex)
