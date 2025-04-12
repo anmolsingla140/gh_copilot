@@ -1,24 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Wileyng\\source\\repos\\gh_copilot\\GrasshopperComponent\\GrasshopperComponent.csproj": {}
+    "C:\\Users\\Wileyng\\Source\\Repos\\gh_copilot\\GrasshopperComponent\\GrasshopperComponent.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Wileyng\\source\\repos\\gh_copilot\\GrasshopperComponent\\GrasshopperComponent.csproj": {
+    "C:\\Users\\Wileyng\\Source\\Repos\\gh_copilot\\GrasshopperComponent\\GrasshopperComponent.csproj": {
       "version": "2.0.1",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Wileyng\\source\\repos\\gh_copilot\\GrasshopperComponent\\GrasshopperComponent.csproj",
+        "projectUniqueName": "C:\\Users\\Wileyng\\Source\\Repos\\gh_copilot\\GrasshopperComponent\\GrasshopperComponent.csproj",
         "projectName": "GrasshopperComponent",
-        "projectPath": "C:\\Users\\Wileyng\\source\\repos\\gh_copilot\\GrasshopperComponent\\GrasshopperComponent.csproj",
+        "projectPath": "C:\\Users\\Wileyng\\Source\\Repos\\gh_copilot\\GrasshopperComponent\\GrasshopperComponent.csproj",
         "packagesPath": "C:\\Users\\Wileyng\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Wileyng\\source\\repos\\gh_copilot\\GrasshopperComponent\\obj\\",
+        "outputPath": "C:\\Users\\Wileyng\\Source\\Repos\\gh_copilot\\GrasshopperComponent\\obj\\",
         "projectStyle": "PackageReference",
         "crossTargeting": true,
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Wileyng\\source\\repos\\gh_copilot\\NuGet.Config",
+          "C:\\Users\\Wileyng\\Source\\Repos\\gh_copilot\\NuGet.Config",
           "C:\\Users\\Wileyng\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"

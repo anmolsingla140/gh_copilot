@@ -47,6 +47,11 @@ namespace Copilot
             UI.StyleSetter.SetWindowStyles();
             Grasshopper.Instances.ActiveCanvas.KeyDown -= Canvas_KeyDown;
             Grasshopper.Instances.ActiveCanvas.KeyDown += Canvas_KeyDown;
+
+            GH_Canvas canvas = Grasshopper.Instances.ActiveCanvas;
+            canvas.ClientSizeChanged -= Canvas_ClientSizeChanged;
+            canvas.ClientSizeChanged += Canvas_ClientSizeChanged;
+
         }
 
         public override void RemovedFromDocument(GH_Document document)
@@ -74,17 +79,18 @@ namespace Copilot
         {
             Sidebar?.Close();
 
-            // Calculate position - at the bottom center of the canvas
-            GH_Canvas canvas = Grasshopper.Instances.ActiveCanvas;
-            System.Drawing.Point location = new System.Drawing.Point(
-                canvas.ClientRectangle.Width / 2 - 200,
-                canvas.ClientRectangle.Height - 100);
 
-            var overallLayout = new DynamicLayout { Padding = new Padding(0, 4, 0, 0), Spacing = new Size(4, 4) ,BackgroundColor=Eto.Drawing.Colors.Transparent};
+            var overallLayout = new DynamicLayout
+            { Padding = new Padding(14), Spacing = new Size(4, 4) ,
+                BackgroundColor=Eto.Drawing.Colors.Transparent};
 
             overallLayout.BeginHorizontal();
             //overallLayout.Add(new Panel { Width = 200,Height = 500 });
-            overallLayout.Add(new LabelBuilder("Copilot").AddStyle(LabelFont.Header1).SetTextAlignment(TextAlignment.Center).Build(), xscale: true);
+            overallLayout.Add(new LabelBuilder("      Copilot")
+                .AddStyle(LabelFont.Header1)
+                .SetTextColor(Eto.Drawing.Colors.White)
+                .SetTextAlignment(TextAlignment.Left)
+                .Build(), xscale: true);
             overallLayout.Add(new CustomButtonBuilder(UI.IconServer.GetDeleteIcon())
                             .SetStyle(VisualStyle.Circle)
                             .SetClickAction((b) => { Sidebar?.Close(); })
@@ -104,7 +110,7 @@ namespace Copilot
                                 .AddStyle(LabelFont.Header1)
                                 .SetTextAlignment(TextAlignment.Center).Build())
                                 .SetClickAction((b) => { Commit(); })
-                                .SetPadding(new Padding(6,0))
+                                .SetPadding(new Padding(6))
                                 .Build();
 
             overallLayout.Add(submitButton);
@@ -113,11 +119,12 @@ namespace Copilot
             //UI.Settings.Instance.General.MainWindowHandle = Rhino.RhinoApp.MainWindowHandle();
 
             Sidebar = new PopupBuilder(overallLayout)
-                        .SetBackgroundMovable()
+                        //.SetBackgroundMovable()
                         .SetBackgroundColor(new Color(255, 255, 255, 155))
                         .SetBorderColor(Eto.Drawing.Colors.Transparent)
+                        .AddRoundCorners(6f)
+                        .SetOffset(new Eto.Drawing.Point(-12,22))
                         .DockToApplicationWindow()
-                        //.SetHeader(30f)
                         .SetPosition(PopupPosition.Right)
                         .Build();
 
@@ -145,6 +152,11 @@ namespace Copilot
             //    };
             //    _chatForm.Show(canvas);
             //}
+        }
+
+        private void Canvas_ClientSizeChanged(object sender, EventArgs e)
+        {
+            //throw new NotImplementedException();
         }
 
         private void TextBox_KeyDown(object sender, KeyEventArgs e)
