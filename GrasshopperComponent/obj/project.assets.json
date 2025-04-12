@@ -96,24 +96,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\921241\\.nuget\\packages\\": {},
+    "C:\\Users\\Wileyng\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Personal Projects\\GH_copilot\\GrasshopperComponent\\GrasshopperComponent.csproj",
+      "projectUniqueName": "C:\\Users\\Wileyng\\source\\repos\\gh_copilot\\GrasshopperComponent\\GrasshopperComponent.csproj",
       "projectName": "GrasshopperComponent",
-      "projectPath": "D:\\Personal Projects\\GH_copilot\\GrasshopperComponent\\GrasshopperComponent.csproj",
-      "packagesPath": "C:\\Users\\921241\\.nuget\\packages\\",
-      "outputPath": "D:\\Personal Projects\\GH_copilot\\GrasshopperComponent\\obj\\",
+      "projectPath": "C:\\Users\\Wileyng\\source\\repos\\gh_copilot\\GrasshopperComponent\\GrasshopperComponent.csproj",
+      "packagesPath": "C:\\Users\\Wileyng\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Wileyng\\Source\\Repos\\gh_copilot\\GrasshopperComponent\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "D:\\Personal Projects\\GH_copilot\\NuGet.Config",
-        "C:\\Users\\921241\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Wileyng\\source\\repos\\gh_copilot\\NuGet.Config",
+        "C:\\Users\\Wileyng\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -122,7 +122,7 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Program Files\\dotnet\\library-packs": {},
+        "C:\\Users\\Wileyng\\source\\repos\\ShapeUI\\bin\\Debug": {},
         "https://api.nuget.org/v3/index.json": {},
         "https://www.myget.org/F/rhino/api/v3/index.json": {}
       },
@@ -141,7 +141,8 @@
         "enableAudit": "true",
         "auditLevel": "low",
         "auditMode": "direct"
-      }
+      },
+      "SdkAnalysisLevel": "9.0.200"
     },
     "frameworks": {
       "net48": {
@@ -158,7 +159,7 @@
             "version": "[8.0.23066.13185-wip, )"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.400\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.200\\RuntimeIdentifierGraph.json"
       }
     }
   }

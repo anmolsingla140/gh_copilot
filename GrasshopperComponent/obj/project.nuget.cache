@@ -1,11 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "+mBdhPAsKW8=",
+  "dgSpecHash": "f9rd++EjM0A=",
   "success": true,
-  "projectFilePath": "D:\\Personal Projects\\GH_copilot\\GrasshopperComponent\\GrasshopperComponent.csproj",
+  "projectFilePath": "C:\\Users\\Wileyng\\source\\repos\\gh_copilot\\GrasshopperComponent\\GrasshopperComponent.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\921241\\.nuget\\packages\\grasshopper\\8.0.23066.13185-wip\\grasshopper.8.0.23066.13185-wip.nupkg.sha512",
-    "C:\\Users\\921241\\.nuget\\packages\\rhinocommon\\8.0.23066.13185-wip\\rhinocommon.8.0.23066.13185-wip.nupkg.sha512"
+    "C:\\Users\\Wileyng\\.nuget\\packages\\grasshopper\\8.0.23066.13185-wip\\grasshopper.8.0.23066.13185-wip.nupkg.sha512",
+    "C:\\Users\\Wileyng\\.nuget\\packages\\rhinocommon\\8.0.23066.13185-wip\\rhinocommon.8.0.23066.13185-wip.nupkg.sha512"
   ],
   "logs": []
 }
