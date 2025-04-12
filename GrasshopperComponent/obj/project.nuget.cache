@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "9Dzz9sJnPGM=",
+  "dgSpecHash": "21W3kCuIbt4=",
   "success": true,
   "projectFilePath": "C:\\Users\\VWarule\\Documents\\GitHub\\GH.Copilot\\GrasshopperComponent\\GrasshopperComponent.csproj",
   "expectedPackageFiles": [
@@ -10,5 +10,12 @@
     "C:\\Users\\VWarule\\.nuget\\packages\\rhinocommon\\8.0.23066.13185-wip\\rhinocommon.8.0.23066.13185-wip.nupkg.sha512",
     "C:\\Users\\VWarule\\.nuget\\packages\\system.reflection.emit\\4.3.0\\system.reflection.emit.4.3.0.nupkg.sha512"
   ],
-  "logs": []
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problem reading the cache file C:\\Users\\VWarule\\Documents\\GitHub\\GH.Copilot\\GrasshopperComponent\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
+    }
+  ]
 }
