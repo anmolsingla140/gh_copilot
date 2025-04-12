@@ -1,0 +1,11 @@
+D:\Personal Projects\GH_copilot\GrasshopperComponent\bin\net48\GrasshopperComponent.gha
+D:\Personal Projects\GH_copilot\GrasshopperComponent\bin\net48\GrasshopperComponent.pdb
+D:\Personal Projects\GH_copilot\GrasshopperComponent\obj\Debug\net48\GrasshopperComponent.csproj.AssemblyReference.cache
+D:\Personal Projects\GH_copilot\GrasshopperComponent\obj\Debug\net48\GrasshopperComponent.GeneratedMSBuildEditorConfig.editorconfig
+D:\Personal Projects\GH_copilot\GrasshopperComponent\obj\Debug\net48\GrasshopperComponent.AssemblyInfoInputs.cache
+D:\Personal Projects\GH_copilot\GrasshopperComponent\obj\Debug\net48\GrasshopperComponent.AssemblyInfo.cs
+D:\Personal Projects\GH_copilot\GrasshopperComponent\obj\Debug\net48\GrasshopperComponent.csproj.CoreCompileInputs.cache
+D:\Personal Projects\GH_copilot\GrasshopperComponent\obj\Debug\net48\GrasshopperComponent.pdb
+D:\Personal Projects\GH_copilot\GrasshopperComponent\bin\Debug\net48\GrasshopperComponent.pdb
+D:\Personal Projects\GH_copilot\GrasshopperComponent\bin\Debug\net48\GrasshopperComponent.gha
+D:\Personal Projects\GH_copilot\GrasshopperComponent\obj\Debug\net48\GrasshopperComponent.gha

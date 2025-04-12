@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net48</TargetFramework>
+    <Version>1.0.0</Version>
+    <Title>GrasshopperComponent</Title>
+    <Description>A simple Grasshopper Component</Description>
+    <AssemblyName>GrasshopperComponent</AssemblyName>
+    <OutputType>Library</OutputType>
+    <!-- Important: This tells MSBuild to create a .gha file on build -->
+    <TargetExt>.gha</TargetExt>
+  </PropertyGroup>
+
+  <!-- Post-build event to copy the .gha to Grasshopper Libraries folder -->
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="Copy &quot;$(TargetPath)&quot; &quot;%AppData%\Grasshopper\Libraries\$(ProjectName).gha&quot;" />
+  </Target>
+  <ItemGroup>
+    <PackageReference Include="Grasshopper" Version="8.0.23066.13185-wip" IncludeAssets="compile;build" />
+    <PackageReference Include="RhinoCommon" Version="8.0.23066.13185-wip" IncludeAssets="compile;build" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Drawing" />
+  </ItemGroup>
+  </Project>
