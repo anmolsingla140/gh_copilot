@@ -1,116 +1,30 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Wileyng\\source\\repos\\gh_copilot\\GrasshopperComponent\\GrasshopperComponent.csproj": {}
+    "C:\\Users\\VWarule\\Documents\\GitHub\\GH.Copilot\\GrasshopperComponent\\GrasshopperComponent.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Wileyng\\source\\repos\\gh_copilot\\GrasshopperComponent\\GrasshopperComponent.csproj": {
-      "version": "2.0.1",
+    "C:\\Users\\VWarule\\Documents\\GitHub\\GH.Copilot\\GrasshopperComponent\\GrasshopperComponent.csproj": {
       "restore": {
-        "projectUniqueName": "C:\\Users\\Wileyng\\source\\repos\\gh_copilot\\GrasshopperComponent\\GrasshopperComponent.csproj",
-        "projectName": "GrasshopperComponent",
-        "projectPath": "C:\\Users\\Wileyng\\source\\repos\\gh_copilot\\GrasshopperComponent\\GrasshopperComponent.csproj",
-        "packagesPath": "C:\\Users\\Wileyng\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Wileyng\\Source\\Repos\\gh_copilot\\GrasshopperComponent\\obj\\",
+        "projectUniqueName": "C:\\Users\\VWarule\\Documents\\GitHub\\GH.Copilot\\GrasshopperComponent\\GrasshopperComponent.csproj",
+        "projectPath": "C:\\Users\\VWarule\\Documents\\GitHub\\GH.Copilot\\GrasshopperComponent\\GrasshopperComponent.csproj",
+        "packagesPath": "C:\\Users\\VWarule\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\VWarule\\Documents\\GitHub\\GH.Copilot\\GrasshopperComponent\\obj\\",
         "projectStyle": "PackageReference",
-        "crossTargeting": true,
+        "UsingMicrosoftNETSdk": false,
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Wileyng\\source\\repos\\gh_copilot\\NuGet.Config",
-          "C:\\Users\\Wileyng\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\VWarule\\Documents\\GitHub\\GH.Copilot\\NuGet.Config",
+          "C:\\Users\\VWarule\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
-        "originalTargetFrameworks": [
-          "net7.0-windows"
-        ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Users\\Wileyng\\source\\repos\\ShapeUI\\bin\\Debug": {},
           "https://api.nuget.org/v3/index.json": {},
           "https://www.myget.org/F/rhino/api/v3/index.json": {}
-        },
-        "frameworks": {
-          "net7.0-windows7.0": {
-            "targetAlias": "net7.0-windows",
-            "projectReferences": {}
-          }
-        },
-        "warningProperties": {
-          "warnAsError": [
-            "NU1605"
-          ]
-        },
-        "restoreAuditProperties": {
-          "enableAudit": "true",
-          "auditLevel": "low",
-          "auditMode": "direct"
-        },
-        "SdkAnalysisLevel": "9.0.200"
-      },
-      "frameworks": {
-        "net7.0-windows7.0": {
-          "targetAlias": "net7.0-windows",
-          "dependencies": {
-            "Grasshopper": {
-              "target": "Package",
-              "version": "[7.36.23346.16351, )"
-            },
-            "Newtonsoft.Json": {
-              "target": "Package",
-              "version": "[13.0.3, )"
-            },
-            "RhinoWindows": {
-              "include": "Compile, Build, Native, ContentFiles, Analyzers, BuildTransitive",
-              "target": "Package",
-              "version": "[8.11.24254.15001, )"
-            },
-            "ShapeUI": {
-              "target": "Package",
-              "version": "[0.1.20.8, )"
-            },
-            "System.Collections": {
-              "target": "Package",
-              "version": "[4.3.0, )"
-            },
-            "System.Collections.NonGeneric": {
-              "target": "Package",
-              "version": "[4.3.0, )"
-            }
-          },
-          "imports": [
-            "net461",
-            "net462",
-            "net47",
-            "net471",
-            "net472",
-            "net48",
-            "net481"
-          ],
-          "assetTargetFallback": true,
-          "warn": true,
-          "downloadDependencies": [
-            {
-              "name": "Microsoft.AspNetCore.App.Ref",
-              "version": "[7.0.20, 7.0.20]"
-            },
-            {
-              "name": "Microsoft.NETCore.App.Ref",
-              "version": "[7.0.20, 7.0.20]"
-            },
-            {
-              "name": "Microsoft.WindowsDesktop.App.Ref",
-              "version": "[7.0.20, 7.0.20]"
-            }
-          ],
-          "frameworkReferences": {
-            "Microsoft.NETCore.App": {
-              "privateAssets": "all"
-            }
-          },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.200\\RuntimeIdentifierGraph.json"
         }
       }
     }

@@ -3,12 +3,16 @@
   "WorkspaceRootPath": "C:\\Users\\VWarule\\Documents\\GitHub\\GH.Copilot\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{D837A448-7F63-4A75-9377-9A23E2503802}|GrasshopperComponent\\GrasshopperComponent.csproj|c:\\users\\vwarule\\documents\\github\\gh.copilot\\grasshoppercomponent\\chatcomponent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D837A448-7F63-4A75-9377-9A23E2503802}|GrasshopperComponent\\GrasshopperComponent.csproj|solutionrelative:grasshoppercomponent\\chatcomponent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\VWarule\\Documents\\GitHub\\GH.Copilot\\GrasshopperComponent\\PythonScripts\\grasshopper_component_finder.py||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:GrasshopperComponent\\PythonScripts\\grasshopper_component_finder.py||{3B902123-F8A7-4915-9F01-361F908088D0}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D837A448-7F63-4A75-9377-9A23E2503802}|GrasshopperComponent\\GrasshopperComponent.csproj|c:\\users\\vwarule\\documents\\github\\gh.copilot\\grasshoppercomponent\\grasshoppercomponent.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|",
-      "RelativeMoniker": "D:0:0:{D837A448-7F63-4A75-9377-9A23E2503802}|GrasshopperComponent\\GrasshopperComponent.csproj|solutionrelative:grasshoppercomponent\\grasshoppercomponent.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\VWarule\\Documents\\GitHub\\GH.Copilot\\GrasshopperComponent\\PythonScripts\\grasshopper_components.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:GrasshopperComponent\\PythonScripts\\grasshopper_components.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\VWarule\\Documents\\GitHub\\GH.Copilot\\GrasshopperComponent\\ChatComponent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:GrasshopperComponent\\ChatComponent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -18,7 +22,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 203,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Bookmark",
@@ -26,28 +30,40 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "GrasshopperComponent",
-              "DocumentMoniker": "C:\\Users\\VWarule\\Documents\\GitHub\\GH.Copilot\\GrasshopperComponent\\GrasshopperComponent.csproj",
-              "RelativeDocumentMoniker": "GrasshopperComponent\\GrasshopperComponent.csproj",
-              "ToolTip": "C:\\Users\\VWarule\\Documents\\GitHub\\GH.Copilot\\GrasshopperComponent\\GrasshopperComponent.csproj",
-              "RelativeToolTip": "GrasshopperComponent\\GrasshopperComponent.csproj",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2025-04-12T14:13:10.227Z",
+              "DocumentIndex": 0,
+              "Title": "grasshopper_component_finder.py",
+              "DocumentMoniker": "C:\\Users\\VWarule\\Documents\\GitHub\\GH.Copilot\\GrasshopperComponent\\PythonScripts\\grasshopper_component_finder.py",
+              "RelativeDocumentMoniker": "GrasshopperComponent\\PythonScripts\\grasshopper_component_finder.py",
+              "ToolTip": "C:\\Users\\VWarule\\Documents\\GitHub\\GH.Copilot\\GrasshopperComponent\\PythonScripts\\grasshopper_component_finder.py",
+              "RelativeToolTip": "GrasshopperComponent\\PythonScripts\\grasshopper_component_finder.py",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAABsAAAAnAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002457|",
+              "WhenOpened": "2025-04-12T14:44:53.926Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
+              "Title": "grasshopper_components.json",
+              "DocumentMoniker": "C:\\Users\\VWarule\\Documents\\GitHub\\GH.Copilot\\GrasshopperComponent\\PythonScripts\\grasshopper_components.json",
+              "RelativeDocumentMoniker": "GrasshopperComponent\\PythonScripts\\grasshopper_components.json",
+              "ToolTip": "C:\\Users\\VWarule\\Documents\\GitHub\\GH.Copilot\\GrasshopperComponent\\PythonScripts\\grasshopper_components.json",
+              "RelativeToolTip": "GrasshopperComponent\\PythonScripts\\grasshopper_components.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-04-12T14:44:51.264Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "ChatComponent.cs",
               "DocumentMoniker": "C:\\Users\\VWarule\\Documents\\GitHub\\GH.Copilot\\GrasshopperComponent\\ChatComponent.cs",
               "RelativeDocumentMoniker": "GrasshopperComponent\\ChatComponent.cs",
               "ToolTip": "C:\\Users\\VWarule\\Documents\\GitHub\\GH.Copilot\\GrasshopperComponent\\ChatComponent.cs",
               "RelativeToolTip": "GrasshopperComponent\\ChatComponent.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAADwBAABFAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAOAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-12T11:46:09.078Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-12T14:43:26.736Z"
             }
           ]
         }

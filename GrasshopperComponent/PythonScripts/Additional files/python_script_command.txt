@@ -1,0 +1,5 @@
+python grasshopper_component_finder_v2.py --prompt "Create a circle" --components "D:/Personal Projects/GH_copilot_github/gh_copilot/PythonScripts/grasshopper_components.json" --api-key "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"
+
+python grasshopper_component_finder_v2.py --prompt "Can I have a series of circles directed along a line in z-axs" --components "D:/Personal Projects/GH_copilot_github/gh_copilot/PythonScripts/grasshopper_components.json" --api-key "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"
+
+python grasshopper_component_finder_v2.py --prompt "Write a python component to create a grid of 5x5 items each 5m apart and a circle placed at each grid point" --components "D:/Personal Projects/GH_copilot_github/gh_copilot/PythonScripts/grasshopper_components.json" --api-key "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"
