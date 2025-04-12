@@ -1,24 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Wileyng\\source\\repos\\gh_copilot\\GrasshopperComponent\\GrasshopperComponent.csproj": {}
+    "C:\\Users\\VWarule\\Documents\\GitHub\\GH.Copilot\\GrasshopperComponent\\GrasshopperComponent.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Wileyng\\source\\repos\\gh_copilot\\GrasshopperComponent\\GrasshopperComponent.csproj": {
+    "C:\\Users\\VWarule\\Documents\\GitHub\\GH.Copilot\\GrasshopperComponent\\GrasshopperComponent.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Wileyng\\source\\repos\\gh_copilot\\GrasshopperComponent\\GrasshopperComponent.csproj",
+        "projectUniqueName": "C:\\Users\\VWarule\\Documents\\GitHub\\GH.Copilot\\GrasshopperComponent\\GrasshopperComponent.csproj",
         "projectName": "GrasshopperComponent",
-        "projectPath": "C:\\Users\\Wileyng\\source\\repos\\gh_copilot\\GrasshopperComponent\\GrasshopperComponent.csproj",
-        "packagesPath": "C:\\Users\\Wileyng\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Wileyng\\source\\repos\\gh_copilot\\GrasshopperComponent\\obj\\",
+        "projectPath": "C:\\Users\\VWarule\\Documents\\GitHub\\GH.Copilot\\GrasshopperComponent\\GrasshopperComponent.csproj",
+        "packagesPath": "C:\\Users\\VWarule\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\VWarule\\Documents\\GitHub\\GH.Copilot\\GrasshopperComponent\\obj\\",
         "projectStyle": "PackageReference",
         "crossTargeting": true,
         "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\Wileyng\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\VWarule\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -27,7 +28,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Users\\Wileyng\\source\\repos\\ShapeUI\\bin\\Debug": {},
+          "C:\\Users\\VWarule\\Documents\\GitHub\\GH.Copilot\\GrasshopperComponent\\Dependencies": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -107,7 +108,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.200\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.201\\RuntimeIdentifierGraph.json"
         }
       }
     }
