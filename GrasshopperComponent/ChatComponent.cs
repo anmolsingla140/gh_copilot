@@ -30,6 +30,13 @@ namespace Copilot
             "Custom",
             "Communication")
         {
+            string pythonDllPath = @"C:\Program Files\Python313\python313.dll";
+
+            // Set the Python DLL path before initializing the runtime
+            Runtime.PythonDLL = pythonDllPath;
+
+            // Initialize the Python runtime
+            PythonEngine.Initialize();
         }
 
         protected override void RegisterInputParams(GH_InputParamManager pManager)
