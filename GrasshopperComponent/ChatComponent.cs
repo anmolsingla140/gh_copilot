@@ -24,7 +24,7 @@ using Grasshopper.Kernel.Special;
 using Rhino.FileIO;
 using System.Diagnostics;
 using Rhino.Runtime;
-using System.Reflection.Metadata;
+//using System.Reflection.Metadata;
 
 namespace GH.Copilot
 {
@@ -186,7 +186,7 @@ namespace GH.Copilot
                     string appDataPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
 
                     // Construct the full path to the TT folder
-                    string ttPath = System.IO.Path.Combine(appDataPath, @"Grasshopper\Libraries\CopilotScripts");
+                    string ttPath = System.IO.Path.Combine(appDataPath, @"Grasshopper\Libraries\PythonScripts");
 
                     // Append the resolved path to Python's sys.path
                     sys.path.append(ttPath);
@@ -198,10 +198,6 @@ namespace GH.Copilot
                         AddRuntimeMessage(GH_RuntimeMessageLevel.Error, "The Python module was not initialized correctly.");
                         return;
                     }
-
-                    //temporary
-                    string arg1 = "";
-                    string arg2 = "";
 
                     dynamic ghScriptClass = _ghScript.GetAttr("grasshopper_component_finder");
                     dynamic ghScriptInstance = ghScriptClass.Invoke();

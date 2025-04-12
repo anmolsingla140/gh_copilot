@@ -1,12 +1,19 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <!-- Post-build event to copy the .gha to Grasshopper Libraries folder -->
   <PropertyGroup>
-    <TargetFramework>net7.0</TargetFramework>
+    <TargetFramework>net48</TargetFramework>
   </PropertyGroup>
+
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-    <Exec Command="     Copy &quot;C:\Users\VWarule\Documents\GitHub\GH.Copilot\GrasshopperComponent\bin\Debug\net7.0\GrasshopperComponent.dll&quot; &quot;%25AppData%25\Grasshopper\Libraries\GrasshopperComponent.gha&quot;&#xA;     if exist &quot;%25AppData%25\Grasshopper\Libraries\PythonScripts&quot; (&#xA;         if not exist &quot;%25AppData%25\Grasshopper\Libraries\PythonScripts\*&quot; (&#xA;             rmdir /S /Q &quot;%25AppData%25\Grasshopper\Libraries\PythonScripts&quot;&#xA;         )&#xA;     )" />
+    <Exec Command="
+      Copy &quot;$(TargetPath)&quot; &quot;%AppData%\Grasshopper\Libraries\$(ProjectName).gha&quot;
+      if exist &quot;%AppData%\Grasshopper\Libraries\PythonScripts&quot; (
+          rmdir /S /Q &quot;%AppData%\Grasshopper\Libraries\PythonScripts&quot;
+      )
+      xcopy /E /I /Y &quot;$(ProjectDir)PythonScripts&quot; &quot;%AppData%\Grasshopper\Libraries\PythonScripts&quot;" />
   </Target>
+
   <ItemGroup>
     <PackageReference Include="Grasshopper" Version="8.0.23066.13185-wip" IncludeAssets="compile;build" />
     <PackageReference Include="pythonnet" Version="3.0.5" />
@@ -14,4 +21,11 @@
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Drawing" />
   </ItemGroup>
-  </Project>
+
+  <ItemGroup>
+    <Content Include="PythonScripts\**\*">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+</Project>

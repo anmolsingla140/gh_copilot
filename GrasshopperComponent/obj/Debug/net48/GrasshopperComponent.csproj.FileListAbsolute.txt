@@ -9,13 +9,23 @@ D:\Personal Projects\GH_copilot\GrasshopperComponent\obj\Debug\net48\Grasshopper
 D:\Personal Projects\GH_copilot\GrasshopperComponent\bin\Debug\net48\GrasshopperComponent.pdb
 D:\Personal Projects\GH_copilot\GrasshopperComponent\bin\Debug\net48\GrasshopperComponent.gha
 D:\Personal Projects\GH_copilot\GrasshopperComponent\obj\Debug\net48\GrasshopperComponent.gha
-C:\Users\VWarule\Documents\GitHub\GH.Copilot\GrasshopperComponent\bin\Debug\net48\GrasshopperComponent.gha
-C:\Users\VWarule\Documents\GitHub\GH.Copilot\GrasshopperComponent\bin\Debug\net48\GrasshopperComponent.pdb
 C:\Users\VWarule\Documents\GitHub\GH.Copilot\GrasshopperComponent\obj\Debug\net48\GrasshopperComponent.csproj.AssemblyReference.cache
+C:\Users\VWarule\Documents\GitHub\GH.Copilot\GrasshopperComponent\obj\Debug\net48\GrasshopperComponent.Properties.Resources.resources
+C:\Users\VWarule\Documents\GitHub\GH.Copilot\GrasshopperComponent\obj\Debug\net48\GrasshopperComponent.csproj.GenerateResource.cache
 C:\Users\VWarule\Documents\GitHub\GH.Copilot\GrasshopperComponent\obj\Debug\net48\GrasshopperComponent.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\VWarule\Documents\GitHub\GH.Copilot\GrasshopperComponent\obj\Debug\net48\GrasshopperComponent.AssemblyInfoInputs.cache
 C:\Users\VWarule\Documents\GitHub\GH.Copilot\GrasshopperComponent\obj\Debug\net48\GrasshopperComponent.AssemblyInfo.cs
 C:\Users\VWarule\Documents\GitHub\GH.Copilot\GrasshopperComponent\obj\Debug\net48\GrasshopperComponent.csproj.CoreCompileInputs.cache
 C:\Users\VWarule\Documents\GitHub\GH.Copilot\GrasshopperComponent\obj\Debug\net48\GrasshopperComponent.sourcelink.json
-C:\Users\VWarule\Documents\GitHub\GH.Copilot\GrasshopperComponent\obj\Debug\net48\GrasshopperComponent.gha
+C:\Users\VWarule\Documents\GitHub\GH.Copilot\GrasshopperComponent\bin\Debug\net48\PythonScripts\Additional files\claude_api.txt
+C:\Users\VWarule\Documents\GitHub\GH.Copilot\GrasshopperComponent\bin\Debug\net48\PythonScripts\Additional files\grasshopper_component_finder_v0.py
+C:\Users\VWarule\Documents\GitHub\GH.Copilot\GrasshopperComponent\bin\Debug\net48\PythonScripts\Additional files\grasshopper_component_scrapper.py
+C:\Users\VWarule\Documents\GitHub\GH.Copilot\GrasshopperComponent\bin\Debug\net48\PythonScripts\Additional files\python_script_command.txt
+C:\Users\VWarule\Documents\GitHub\GH.Copilot\GrasshopperComponent\bin\Debug\net48\PythonScripts\grasshopper_components.json
+C:\Users\VWarule\Documents\GitHub\GH.Copilot\GrasshopperComponent\bin\Debug\net48\PythonScripts\grasshopper_component_finder.py
+C:\Users\VWarule\Documents\GitHub\GH.Copilot\GrasshopperComponent\bin\Debug\net48\GrasshopperComponent.dll
+C:\Users\VWarule\Documents\GitHub\GH.Copilot\GrasshopperComponent\bin\Debug\net48\GrasshopperComponent.pdb
+C:\Users\VWarule\Documents\GitHub\GH.Copilot\GrasshopperComponent\bin\Debug\net48\Python.Runtime.dll
+C:\Users\VWarule\Documents\GitHub\GH.Copilot\GrasshopperComponent\obj\Debug\net48\Grasshop.C6F752EB.Up2Date
+C:\Users\VWarule\Documents\GitHub\GH.Copilot\GrasshopperComponent\obj\Debug\net48\GrasshopperComponent.dll
 C:\Users\VWarule\Documents\GitHub\GH.Copilot\GrasshopperComponent\obj\Debug\net48\GrasshopperComponent.pdb
