@@ -1,8 +1,5 @@
 using System;
-using System.Drawing;
-// If the error persists, ensure that the `System.Windows.Forms` assembly is referenced in your project.
-// In Visual Studio, right-click on your project in the Solution Explorer, select "Add Reference",
-// go to the "Assemblies" tab, and check "System.Windows.Forms" if it is not already checked.
+using SWF = System.Windows.Forms;
 using Grasshopper.Kernel;
 using Grasshopper.GUI;
 using Grasshopper.GUI.Canvas;
@@ -11,343 +8,281 @@ using Grasshopper;
 using GH_IO.Serialization;
 using Grasshopper.Kernel.Types;
 using Grasshopper.Kernel.Data;
-using Python.Runtime;
-using PyNet = Python.Runtime.Py;
-using System.Collections.Generic;
-using System.Xml.Linq;
-//using GHPT.Configs;
-//using GHPT.IO;
-//using GHPT.Prompts;
-//using GHPT.UI;
-//using GHPT.Utils;
-using Grasshopper.Kernel.Special;
-using Rhino.FileIO;
-using System.Diagnostics;
-using Rhino.Runtime;
-using System.Reflection.Metadata;
+using UI;
+using Eto.Forms;
+using Eto.Drawing;
 
-namespace GH.Copilot
+
+namespace Copilot
 {
-    public class ChatComponent : GH_Component
+    public class PopupChatComponent : GH_Component
     {
-        //private GH_Document _doc;
-        //private PromptData _data;
-        //private readonly Spinner _spinner;
-
-        //public GPTConfig CurrentConfig;
-
-        private string previousPrompt = string.Empty;
-
-        private bool allowDupPrompt = false;
-
-        public bool PromptOverride
-        {
-            get { return allowDupPrompt; }
-            set { allowDupPrompt = value; }
-        }
-
         //private static PopupChatForm _chatForm = null;
         private string _lastResponse = "";
-
-        public ChatComponent() : base(
-            "Chat",
+        public Popup Sidebar;
+        public TextBox UserInput;
+        public PopupChatComponent() : base(
+            "Popup Chat",
             "Chat",
             "Chat interface that appears with Ctrl+,",
-            "Copilot",
+            "Custom",
             "Communication")
         {
-            try
-            {
-                string pythonDllPath = @"C:\Program Files\Python313\python313.dll";
-
-                // Set the Python DLL path before initializing the runtime
-                Runtime.PythonDLL = pythonDllPath;
-
-                // Initialize the Python runtime
-                PythonEngine.Initialize();
-            }
-            catch (Exception ex)
-            {
-                AddRuntimeMessage(GH_RuntimeMessageLevel.Error, "Python initialization failed: " + ex.Message);
-            }
         }
 
         protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
         {
-            pManager.AddTextParameter("Query", "Q", "Text query in the form of a prompt.", GH_ParamAccess.item);
+            // No inputs needed as it's triggered by keyboard shortcut
         }
 
         protected override void RegisterOutputParams(GH_Component.GH_OutputParamManager pManager)
         {
-            pManager.AddTextParameter("Response", "R", "The response from the chat interface.", GH_ParamAccess.item);
+            pManager.AddTextParameter("Response", "Output", "The response from the chat interface", GH_ParamAccess.item);
         }
 
-        //public override void AddedToDocument(GH_Document document)
-        //{
-        //    base.AddedToDocument(document);
-        //    Grasshopper.Instances.ActiveCanvas.KeyDown += Canvas_KeyDown;
-        //}
-
-        //public override void RemovedFromDocument(GH_Document document)
-        //{
-        //    Grasshopper.Instances.ActiveCanvas.KeyDown -= Canvas_KeyDown;
-        //    if (_chatForm != null && !_chatForm.IsDisposed)
-        //    {
-        //        _chatForm.Close();
-        //        _chatForm = null;
-        //    }
-        //    base.RemovedFromDocument(document);
-        //}
-
-        //private void Canvas_KeyDown(object sender, KeyEventArgs e)
-        //{
-        //    // Check for Ctrl+, shortcut
-        //    if (e.Control && e.KeyCode == Keys.Oemcomma)
-        //    {
-        //        e.Handled = true;
-        //        ShowChatForm();
-        //    }
-        //}
-
-        //private void ShowChatForm()
-        //{
-        //    if (_chatForm == null || _chatForm.IsDisposed)
-        //    {
-        //        // Calculate position - at the bottom center of the canvas
-        //        GH_Canvas canvas = Grasshopper.Instances.ActiveCanvas;
-        //        System.Drawing.Point location = new System.Drawing.Point(
-        //            canvas.ClientRectangle.Width / 2 - 200,
-        //            canvas.ClientRectangle.Height - 100);
-
-        //        _chatForm = new PopupChatForm(location);
-        //        _chatForm.ResponseGenerated += (sender, response) =>
-        //        {
-        //            _lastResponse = response;
-
-        //            // Add components to the canvas
-        //            AddComponents();
-
-        //            this.ExpireSolution(true);
-        //        };
-        //        _chatForm.Show(canvas);
-        //    }
-        //}
-
-        //public void AddComponents()
-        //{
-
-        //    if (!string.IsNullOrEmpty(_data.Advice))
-        //        this.CreateAdvicePanel(_data.Advice);
-
-        //    if (_data.Additions is null)
-        //        return;
-
-        //    // Compute tiers
-        //    Dictionary<int, List<Addition>> buckets = new Dictionary<int, List<Addition>>();
-
-        //    foreach (Addition addition in _data.Additions)
-        //    {
-        //        if (buckets.ContainsKey(addition.Tier))
-        //        {
-        //            buckets[addition.Tier].Add(addition);
-        //        }
-        //        else
-        //        {
-        //            buckets.Add(addition.Tier, new List<Addition>() { addition });
-        //        }
-        //    }
-
-        //    foreach (int tier in buckets.Keys)
-        //    {
-        //        int xIncrement = 250;
-        //        int yIncrement = 100;
-        //        float x = this.Attributes.Pivot.X + 100 + (xIncrement * tier);
-        //        float y = this.Attributes.Pivot.Y;
-
-        //        foreach (Addition addition in buckets[tier])
-        //        {
-        //            GraphUtil.InstantiateComponent(_doc, addition, new System.Drawing.PointF(x, y));
-        //            y += yIncrement;
-        //        }
-        //    }
-        //}
-
-        protected override void SolveInstance(IGH_DataAccess DA)
+        public override void AddedToDocument(GH_Document document)
         {
-            string query = "";
-            if (!DA.GetData(2, ref query)) { return; }
+            base.AddedToDocument(document);
+            UI.Settings.Instance.General.MainWindowHandle = Grasshopper.Instances.ActiveCanvas.Handle;
+            UI.StyleSetter.SetWindowStyles();
+            Grasshopper.Instances.ActiveCanvas.KeyDown -= Canvas_KeyDown;
+            Grasshopper.Instances.ActiveCanvas.KeyDown += Canvas_KeyDown;
 
+            GH_Canvas canvas = Grasshopper.Instances.ActiveCanvas;
+            canvas.ClientSizeChanged -= Canvas_ClientSizeChanged;
+            canvas.ClientSizeChanged += Canvas_ClientSizeChanged;
+
+        }
+
+        public override void RemovedFromDocument(GH_Document document)
+        {
+            Grasshopper.Instances.ActiveCanvas.KeyDown -= Canvas_KeyDown;
+            //if (_chatForm != null && !_chatForm.IsDisposed)
+            //{
+            //    _chatForm.Close();
+            //    _chatForm = null;
+            //}
+            base.RemovedFromDocument(document);
+        }
+
+        private void Canvas_KeyDown(object sender, SWF.KeyEventArgs e)
+        {
+            // Check for Ctrl+, shortcut
+            if (e.Control && e.KeyCode == SWF.Keys.Oemcomma)
+            {
+                e.Handled = true;
+                ShowChatForm();
+            }
+        }
+
+        private void ShowChatForm()
+        {
+            Sidebar?.Close();
+
+
+            var overallLayout = new DynamicLayout
+            {
+                Padding = new Padding(14),
+                Spacing = new Size(4, 4),
+                BackgroundColor = Eto.Drawing.Colors.Transparent
+            };
+
+            overallLayout.BeginHorizontal();
+            //overallLayout.Add(new Panel { Width = 200,Height = 500 });
+            overallLayout.Add(new LabelBuilder("      Copilot")
+                .AddStyle(LabelFont.Header1)
+                .SetTextColor(Eto.Drawing.Colors.White)
+                .SetTextAlignment(TextAlignment.Left)
+                .Build(), xscale: true);
+            overallLayout.Add(new CustomButtonBuilder(UI.IconServer.GetDeleteIcon())
+                            .SetStyle(VisualStyle.Circle)
+                            .SetClickAction((b) => { Sidebar?.Close(); })
+                            .SetBackgroundColor(Eto.Drawing.Colors.Transparent)
+                            .Build(), xscale: false);
+            overallLayout.EndBeginHorizontal();
+            var text = new LabelBuilder("TestingTesting").AddStyle(LabelFont.Content).SetTextAlignment(TextAlignment.Center).Build();
+            overallLayout.Add(new Panel { Content = text, Width = 200, Height = 500 });
+            overallLayout.EndBeginHorizontal();
+            UserInput = new TextBox { Width = 200, Height = 30, BackgroundColor = new Color(255, 255, 255, 155), TextColor = Eto.Drawing.Colors.White };
+            UserInput.KeyDown -= TextBox_KeyDown;
+            UserInput.KeyDown += TextBox_KeyDown;
+            overallLayout.Add(UserInput);
+
+            var submitButton = new CustomButtonBuilder
+                                (new LabelBuilder("Submit")
+                                .AddStyle(LabelFont.Header1)
+                                .SetTextAlignment(TextAlignment.Center).Build())
+                                .SetClickAction((b) => { Commit(); })
+                                .SetPadding(new Padding(6))
+                                .Build();
+
+            overallLayout.Add(submitButton);
+            UI.Settings.Instance.General.MainWindowHandle = Grasshopper.Instances.ActiveCanvas.Handle;
+
+            Sidebar = new PopupBuilder(overallLayout)
+                        //.SetBackgroundMovable()
+                        .SetBackgroundColor(new Color(255, 255, 255, 155))
+                        .SetBorderColor(Eto.Drawing.Colors.Transparent)
+                        .AddRoundCorners(6f)
+                        .SetOffset(new Eto.Drawing.Point(-12, 22))
+                        .DockToApplicationWindow()
+                        .SetPosition(PopupPosition.Right)
+                        .Build();
+
+
+            Sidebar.Show();
+            UserInput.Focus();
+
+        }
+
+        private void Canvas_ClientSizeChanged(object sender, EventArgs e)
+        {
+            //throw new NotImplementedException();
+        }
+
+        private void TextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Keys.Enter)
+            {
+                Commit();
+                e.Handled = true;
+
+            }
+            else if (e.Key == Keys.Escape)
+            {
+                UserInput.Text = "";
+                e.Handled = true;
+            }
+        }
+
+        private void AddPointComponentToCanvas()
+        {
             try
             {
-                using (PyNet.GIL()) // Acquire the Global Interpreter Lock
+                // Get active document
+                GH_Document doc = Grasshopper.Instances.ActiveCanvas.Document;
+                if (doc == null)
                 {
-                    dynamic sys = PyNet.Import("sys");
-                    // Resolve %AppData% to its full path
-                    string appDataPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+                    System.Diagnostics.Debug.WriteLine("Document is null");
+                    return;
+                }
 
-                    // Construct the full path to the TT folder
-                    string ttPath = System.IO.Path.Combine(appDataPath, @"Grasshopper\Libraries\CopilotScripts");
-
-                    // Append the resolved path to Python's sys.path
-                    sys.path.append(ttPath);
-
-                    dynamic _ghScript = PyNet.Import("grasshopper_component_finder");
-
-                    if (_ghScript == null)
+                // Create the Point component from the default library
+                // Look for the specific point component by name and category
+                IGH_Component pointComponent = null;
+                foreach (var obj in Instances.ComponentServer.ObjectProxies)
+                {
+                    // Look for a component that's specifically for creating points
+                    // Typically this would be in "Vector" or "Params" category with "Point" or "Pt" in the name
+                    if ((obj.Desc.Category == "Vector" || obj.Desc.Category == "Params") &&
+                        (obj.Desc.Name == "Point" || obj.Desc.Name.Contains("Construct Point")))
                     {
-                        AddRuntimeMessage(GH_RuntimeMessageLevel.Error, "The Python module was not initialized correctly.");
+                        System.Diagnostics.Debug.WriteLine($"Found component: {obj.Desc.Name} in {obj.Desc.Category} with GUID {obj.Guid}");
+                        pointComponent = Instances.ComponentServer.EmitObject(obj.Guid) as IGH_Component;
+                        if (pointComponent != null) break;
+                    }
+                }
+
+                if (pointComponent == null)
+                {
+                    System.Diagnostics.Debug.WriteLine("Failed to find point component");
+
+                    // Fallback to a specific GUID for the Construct Point component
+                    // This is a common GUID for the Construct Point component
+                    Guid constructPointGuid = new Guid("57da07bd-ecab-415d-9d86-af36d7073abc");
+                    pointComponent = Instances.ComponentServer.EmitObject(constructPointGuid) as IGH_Component;
+
+                    if (pointComponent == null)
+                    {
+                        System.Diagnostics.Debug.WriteLine("Failed to create point component using fallback GUID");
                         return;
                     }
-
-                    //temporary
-                    string arg1 = "";
-                    string arg2 = "";
-
-                    dynamic ghScriptClass = _ghScript.GetAttr("grasshopper_component_finder");
-                    dynamic ghScriptInstance = ghScriptClass.Invoke();
-                    _lastResponse = ghScriptInstance.main(query, @"C: \Users\VWarule\Documents\GitHub\GH.Copilot\GrasshopperComponent\PythonScripts\grasshopper_components.json", "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", @"C: \Users\VWarule\Documents\GitHub\GH.Copilot\GrasshopperComponent\PythonScripts\response.json");
                 }
+
+                // Get a reference to the current component (this) on the canvas
+                System.Drawing.PointF pivot = new System.Drawing.PointF(
+                    Attributes.Pivot.X + 150, // Position to the right of this component
+                    Attributes.Pivot.Y);
+
+                // Record undo event
+                doc.UndoUtil.RecordAddObjectEvent("Add Point Component", pointComponent);
+
+                // Add the component to the document
+                doc.AddObject(pointComponent, false);
+
+                // Position the component
+                pointComponent.Attributes.Pivot = pivot;
+
+                // Create a random point
+                Random rnd = new Random();
+                double x = rnd.NextDouble() * 10;
+                double y = rnd.NextDouble() * 10;
+                double z = rnd.NextDouble() * 10;
+
+                // Set the x, y, z input values if this is a Construct Point component
+                if (pointComponent.Params.Input.Count >= 3)
+                {
+                    // Assuming this is a Construct Point component with X, Y, Z inputs
+                    var xParam = pointComponent.Params.Input[0];
+                    var yParam = pointComponent.Params.Input[1];
+                    var zParam = pointComponent.Params.Input[2];
+
+                    xParam.AddVolatileData(new GH_Path(0), 0, new GH_Number(x));
+                    yParam.AddVolatileData(new GH_Path(0), 0, new GH_Number(y));
+                    zParam.AddVolatileData(new GH_Path(0), 0, new GH_Number(z));
+                }
+                else if (pointComponent.Params.Input.Count == 1)
+                {
+                    // Assuming this is a Point component with a single Point3d input
+                    var param = pointComponent.Params.Input[0];
+                    var pointData = new GH_Point(new Point3d(x, y, z));
+                    param.AddVolatileData(new GH_Path(0), 0, pointData);
+                }
+
+                // Force a proper refresh
+                pointComponent.ExpireSolution(true);
+                doc.NewSolution(true);
+                Instances.ActiveCanvas.Refresh();
+
+                System.Diagnostics.Debug.WriteLine("Point component added successfully");
             }
             catch (Exception ex)
             {
-                AddRuntimeMessage(GH_RuntimeMessageLevel.Error, "Error while executing Python function: " + ex.Message);
-                return;
+                System.Diagnostics.Debug.WriteLine("Error adding point component: " + ex.Message);
             }
+        }
 
+        protected override void SolveInstance(IGH_DataAccess DA)
+        {
             DA.SetData(0, _lastResponse);
         }
 
-        //public void CreateAdvicePanel(string advice)
-        //{
-        //    var pivot = new System.Drawing.PointF(this.Attributes.Pivot.X, this.Attributes.Pivot.Y - 250);
-        //    this.CreatePanel(advice, "Advice", pivot, System.Drawing.Color.LightBlue);
-        //}
+        protected override System.Drawing.Bitmap Icon
+        {
+            get { return null; }
+        }
+        private void Commit()
+        {
+            string message = UserInput.Text.Trim();
+            if (string.IsNullOrEmpty(message)) return;
 
-        //public void CreatePanel(string content, string nickName, System.Drawing.PointF pivot)
-        //{
-        //    this.CreatePanel(content, nickName, pivot, System.Drawing.Color.FromArgb(255, 255, 250, 90));
-        //}
 
-        //    public void CreatePanel(string content, string nickName, System.Drawing.PointF pivot, System.Drawing.Color color)
-        //    {
-        //        // Fix for CS8370: Replace target-typed object creation with explicit type instantiation
-        //        // With the following explicit instantiation:
-        //        Dictionary<int, List<Addition>> buckets = new Dictionary<int, List<Addition>>();
-        //        GH_Panel panel = new GH_Panel
-        //        {
-        //            // Fix for IDE0017: Simplify object initialization
-        //            NickName = nickName,
-        //            UserText = content,
-        //            Properties = { Colour = color }
-        //        };
+            // For now, just return "Hello" as the response
+            //string response = "Hello";
 
-        //        _doc.AddObject(panel, false);
-        //        panel.Attributes.Pivot = pivot;
-        //    }
+            // Notify the component that a response was generated
+            //ResponseGenerated?.Invoke(this, response);
 
-        //protected override System.Drawing.Bitmap Icon
-        //{
-        //    get { return null; }
-        //}
+            // Close the form
+            //this.Close();
+            UserInput.Text = "";
 
+        }
         public override Guid ComponentGuid
         {
             get { return new Guid("e3b5c8f7-8d4b-4c9b-9c1e-2f3a9b7e6d3f"); }
         }
-        
-
-        // Custom lightweight form for the popup chat interface
-        //public class PopupChatForm : Form
-        //{
-        //    private TextBox userInput;
-        //    private Button submitButton;
-
-        //    // Event for when a response is generated
-        //    public event EventHandler<string> ResponseGenerated;
-
-        //public PopupChatForm(System.Drawing.Point location)
-        //{
-        //    this.Text = "";
-        //    this.Size = new System.Drawing.Size(400, 40);
-        //    this.StartPosition = FormStartPosition.Manual;
-        //    this.Location = location;
-        //    this.FormBorderStyle = FormBorderStyle.None;
-        //    this.ShowInTaskbar = false;
-        //    this.TopMost = true;
-        //    this.BackColor = System.Drawing.Color.FromArgb(240, 240, 240);
-
-        //    // User input field - one line
-        //    userInput = new TextBox();
-        //    userInput.Dock = DockStyle.Fill;
-        //    userInput.BorderStyle = BorderStyle.None;
-        //    userInput.Font = new System.Drawing.Font("Segoe UI", 10F);
-        //    userInput.BackColor = System.Drawing.Color.White;
-        //    userInput.Padding = new Padding(5);
-        //    userInput.KeyDown += (sender, e) =>
-        //    {
-        //        if (e.KeyCode == Keys.Enter)
-        //        {
-        //            ProcessInput();
-        //            e.Handled = true;
-        //            e.SuppressKeyPress = true;
-        //        }
-        //        else if (e.KeyCode == Keys.Escape)
-        //        {
-        //            this.Close();
-        //            e.Handled = true;
-        //            e.SuppressKeyPress = true;
-        //        }
-        //    };
-
-        //    // Submit button
-        //    submitButton = new Button();
-        //    submitButton.Text = "Submit";
-        //    submitButton.Dock = DockStyle.Right;
-        //    submitButton.Width = 70;
-        //    submitButton.FlatStyle = FlatStyle.Flat;
-        //    submitButton.FlatAppearance.BorderSize = 0;
-        //    submitButton.BackColor = System.Drawing.Color.FromArgb(0, 120, 212);
-        //    submitButton.ForeColor = System.Drawing.Color.White;
-        //    submitButton.Click += (sender, e) => ProcessInput();
-
-        //    // Layout panel with shadow effect
-        //    Panel mainPanel = new Panel();
-        //    mainPanel.Dock = DockStyle.Fill;
-        //    mainPanel.Padding = new Padding(1);
-        //    mainPanel.Controls.Add(userInput);
-        //    mainPanel.Controls.Add(submitButton);
-
-        //    // Add shadow/border effect
-        //    mainPanel.Paint += (sender, e) =>
-        //    {
-        //        e.Graphics.DrawRectangle(new System.Drawing.Pen(System.Drawing.Color.FromArgb(200, 200, 200)),
-        //            0, 0, mainPanel.Width - 1, mainPanel.Height - 1);
-        //    };
-
-        //    this.Controls.Add(mainPanel);
-
-        //    // Set focus to the input when shown
-        //    this.Shown += (sender, e) => userInput.Focus();
-
-        //    // Close when focus is lost
-        //    this.Deactivate += (sender, e) => this.Close();
-        //}
-
-        //private void ProcessInput()
-        //{
-        //    string message = userInput.Text.Trim();
-        //    if (string.IsNullOrEmpty(message)) return;
-
-        //    // For now, just return "Hello" as the response
-        //    string response = "Hello";
-
-        //    // Notify the component that a response was generated
-        //    ResponseGenerated?.Invoke(this, response);
-
-        //    // Close the form
-        //    this.Close();
-        //}
-
-
     }
+
+
 }

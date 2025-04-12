@@ -1,17 +1,21 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <!-- Post-build event to copy the .gha to Grasshopper Libraries folder -->
   <PropertyGroup>
-    <TargetFramework>net7.0</TargetFramework>
+	  <TargetFrameworks>net7.0-windows</TargetFrameworks>
+	  <!--<TargetExt>.gha</TargetExt>-->
   </PropertyGroup>
-  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-    <Exec Command="     Copy &quot;C:\Users\VWarule\Documents\GitHub\GH.Copilot\GrasshopperComponent\bin\Debug\net7.0\GrasshopperComponent.dll&quot; &quot;%25AppData%25\Grasshopper\Libraries\GrasshopperComponent.gha&quot;&#xA;     if exist &quot;%25AppData%25\Grasshopper\Libraries\PythonScripts&quot; (&#xA;         if not exist &quot;%25AppData%25\Grasshopper\Libraries\PythonScripts\*&quot; (&#xA;             rmdir /S /Q &quot;%25AppData%25\Grasshopper\Libraries\PythonScripts&quot;&#xA;         )&#xA;     )" />
-  </Target>
+
   <ItemGroup>
-    <PackageReference Include="Grasshopper" Version="8.0.23066.13185-wip" IncludeAssets="compile;build" />
+    <PackageReference Include="Grasshopper" Version="8.0.23066.13185-wip" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="pythonnet" Version="3.0.5" />
-    <PackageReference Include="RhinoCommon" Version="8.0.23066.13185-wip" IncludeAssets="compile;build" />
-    <Reference Include="System.Windows.Forms" />
-    <Reference Include="System.Drawing" />
+    <PackageReference Include="ShapeUI" Version="0.1.20.8" />
+    <PackageReference Include="System.Collections" Version="4.3.0" />
+    <PackageReference Include="System.Collections.NonGeneric" Version="4.3.0" />
   </ItemGroup>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="Copy &quot;C:\Users\Wileyng\source\repos\gh_copilot\GrasshopperComponent\bin\Debug\net7.0-windows\GrasshopperComponent.dll&quot; &#xD;&#xA;&quot;%25AppData%25\Grasshopper\Libraries\GrasshopperComponent.gha&quot;&#xD;&#xA;     if exist &quot;%25AppData%25\Grasshopper\Libraries\PythonScripts&quot; (&#xD;&#xA;         if not exist &quot;%25AppData%25\Grasshopper\Libraries\PythonScripts\*&quot; (&#xD;&#xA;             rmdir /S /Q &quot;%25AppData%25\Grasshopper\Libraries\PythonScripts&quot;&#xD;&#xA;         )&#xD;&#xA;     )" />
+  </Target>
   </Project>
