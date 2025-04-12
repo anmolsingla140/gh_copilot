@@ -1,0 +1,13 @@
+{
+  "profiles": {
+    "Rhino7": {
+      "commandName": "Executable",
+      "executablePath": "C:\\Program Files\\Rhino 7\\System\\Rhino.exe"
+    },
+    "Rhino8": {
+      "commandName": "Executable",
+      "executablePath": "C:\\Program Files\\Rhino 8\\System\\Rhino.exe",
+      "nativeDebugging": false
+    }
+  }
+}
