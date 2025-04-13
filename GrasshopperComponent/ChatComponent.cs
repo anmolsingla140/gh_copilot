@@ -8,6 +8,8 @@ using Grasshopper;
 using GH_IO.Serialization;
 using Grasshopper.Kernel.Types;
 using Grasshopper.Kernel.Data;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using UI;
 using Eto.Forms;
 using Eto.Drawing;
@@ -16,13 +18,21 @@ using PyNet = Python.Runtime.Py;
 
 namespace Copilot
 {
+    public class JsonResponse
+    {
+        public string explanation { get; set; }
+        public object[] components { get; set; }
+        public object[] connections { get; set; }
+    }
     public class PopupChatComponent : GH_Component
     {
         //private static PopupChatForm _chatForm = null;
         private string _lastResponse = "";
         public Popup Sidebar;
         public TextBox UserInput;
-        public TextBox Response;
+        public TextArea Response;
+        public string APIKey;
+        public string GHInstallationLocation;
         public PopupChatComponent() : base(
             "Popup Chat",
             "Chat",
@@ -30,18 +40,18 @@ namespace Copilot
             "Custom",
             "Communication")
         {
-            //Runtime.PythonDLL = @"C:\Users\wiley\AppData\Local\Programs\Python\Python310\python310.dll";
 
         }
 
         protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
         {
-            // No inputs needed as it's triggered by keyboard shortcut
+            pManager.AddTextParameter("API Key", "K", "API key string", GH_ParamAccess.item);
         }
 
         protected override void RegisterOutputParams(GH_Component.GH_OutputParamManager pManager)
         {
             pManager.AddTextParameter("Response", "Output", "The response from the chat interface", GH_ParamAccess.item);
+
         }
 
         public override void AddedToDocument(GH_Document document)
@@ -51,6 +61,11 @@ namespace Copilot
             UI.StyleSetter.SetWindowStyles();
             Grasshopper.Instances.ActiveCanvas.KeyDown -= Canvas_KeyDown;
             Grasshopper.Instances.ActiveCanvas.KeyDown += Canvas_KeyDown;
+            if (Runtime.PythonDLL==null)
+                Runtime.PythonDLL = @"C:\Users\wiley\AppData\Local\Programs\Python\Python310\python310.dll";
+
+            string appDataPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+            GHInstallationLocation = System.IO.Path.Combine(appDataPath, @"Grasshopper\Libraries\PythonScripts");
 
             PythonEngine.Initialize();
 
@@ -63,11 +78,7 @@ namespace Copilot
         public override void RemovedFromDocument(GH_Document document)
         {
             Grasshopper.Instances.ActiveCanvas.KeyDown -= Canvas_KeyDown;
-            //if (_chatForm != null && !_chatForm.IsDisposed)
-            //{
-            //    _chatForm.Close();
-            //    _chatForm = null;
-            //}
+
             base.RemovedFromDocument(document);
         }
 
@@ -110,32 +121,35 @@ namespace Copilot
             overallLayout.EndBeginVertical();
             overallLayout.BeginHorizontal();
 
-            Response = new TextBox
+            Response = new TextArea
             {
-
+                AcceptsReturn=true,
+                Wrap = true,
                 BackgroundColor = new Color(255, 255, 255, 155),
                 TextColor = Eto.Drawing.Colors.White,
-                ReadOnly = true
+                ReadOnly = true,
+                Height= 500,
+                Width = 400
             };
             
             overallLayout.Add(new Panel { Content = Response, Height = 500 });
             overallLayout.EndHorizontal();
             overallLayout.EndBeginVertical();
             overallLayout.BeginHorizontal();
-            UserInput = new TextBox { Width = 200, Height = 30, BackgroundColor = new Color(255, 255, 255, 155), TextColor = Eto.Drawing.Colors.White };
+            UserInput = new TextBox {  Height = 30, BackgroundColor = new Color(255, 255, 255, 155), TextColor = Eto.Drawing.Colors.White };
             UserInput.KeyDown -= TextBox_KeyDown;
             UserInput.KeyDown += TextBox_KeyDown;
-            overallLayout.Add(UserInput);
+            overallLayout.Add(UserInput,xscale:true);
 
             var submitButton = new CustomButtonBuilder
                                 (new LabelBuilder("Submit")
                                 .AddStyle(LabelFont.Header1)
+                                .SetWidth(60)
                                 .SetTextAlignment(TextAlignment.Center).Build())
                                 .SetClickAction((b) => { Commit(); })
                                 .SetPadding(new Padding(6))
                                 .Build();
-
-            overallLayout.Add(submitButton);
+            overallLayout.Add(submitButton, xscale: false);
             UI.Settings.Instance.General.MainWindowHandle = Grasshopper.Instances.ActiveCanvas.Handle;
 
             Sidebar = new PopupBuilder(overallLayout)
@@ -143,12 +157,13 @@ namespace Copilot
                         .SetBackgroundColor(new Color(255, 255, 255, 155))
                         .SetBorderColor(Eto.Drawing.Colors.Transparent)
                         .AddRoundCorners(6f)
+                        
                         .SetOffset(new Eto.Drawing.Point(-12, 22))
                         .DockToApplicationWindow()
                         .SetPosition(PopupPosition.Right)
                         .Build();
 
-
+            Sidebar.Resizable = true;
             Sidebar.Show();
             UserInput.Focus();
 
@@ -174,105 +189,11 @@ namespace Copilot
             }
         }
 
-        private void AddPointComponentToCanvas()
-        {
-            try
-            {
-                // Get active document
-                GH_Document doc = Grasshopper.Instances.ActiveCanvas.Document;
-                if (doc == null)
-                {
-                    System.Diagnostics.Debug.WriteLine("Document is null");
-                    return;
-                }
-
-                // Create the Point component from the default library
-                // Look for the specific point component by name and category
-                IGH_Component pointComponent = null;
-                foreach (var obj in Instances.ComponentServer.ObjectProxies)
-                {
-                    // Look for a component that's specifically for creating points
-                    // Typically this would be in "Vector" or "Params" category with "Point" or "Pt" in the name
-                    if ((obj.Desc.Category == "Vector" || obj.Desc.Category == "Params") &&
-                        (obj.Desc.Name == "Point" || obj.Desc.Name.Contains("Construct Point")))
-                    {
-                        System.Diagnostics.Debug.WriteLine($"Found component: {obj.Desc.Name} in {obj.Desc.Category} with GUID {obj.Guid}");
-                        pointComponent = Instances.ComponentServer.EmitObject(obj.Guid) as IGH_Component;
-                        if (pointComponent != null) break;
-                    }
-                }
-
-                if (pointComponent == null)
-                {
-                    System.Diagnostics.Debug.WriteLine("Failed to find point component");
-
-                    // Fallback to a specific GUID for the Construct Point component
-                    // This is a common GUID for the Construct Point component
-                    Guid constructPointGuid = new Guid("57da07bd-ecab-415d-9d86-af36d7073abc");
-                    pointComponent = Instances.ComponentServer.EmitObject(constructPointGuid) as IGH_Component;
-
-                    if (pointComponent == null)
-                    {
-                        System.Diagnostics.Debug.WriteLine("Failed to create point component using fallback GUID");
-                        return;
-                    }
-                }
-
-                // Get a reference to the current component (this) on the canvas
-                System.Drawing.PointF pivot = new System.Drawing.PointF(
-                    Attributes.Pivot.X + 150, // Position to the right of this component
-                    Attributes.Pivot.Y);
-
-                // Record undo event
-                doc.UndoUtil.RecordAddObjectEvent("Add Point Component", pointComponent);
-
-                // Add the component to the document
-                doc.AddObject(pointComponent, false);
-
-                // Position the component
-                pointComponent.Attributes.Pivot = pivot;
-
-                // Create a random point
-                Random rnd = new Random();
-                double x = rnd.NextDouble() * 10;
-                double y = rnd.NextDouble() * 10;
-                double z = rnd.NextDouble() * 10;
-
-                // Set the x, y, z input values if this is a Construct Point component
-                if (pointComponent.Params.Input.Count >= 3)
-                {
-                    // Assuming this is a Construct Point component with X, Y, Z inputs
-                    var xParam = pointComponent.Params.Input[0];
-                    var yParam = pointComponent.Params.Input[1];
-                    var zParam = pointComponent.Params.Input[2];
-
-                    xParam.AddVolatileData(new GH_Path(0), 0, new GH_Number(x));
-                    yParam.AddVolatileData(new GH_Path(0), 0, new GH_Number(y));
-                    zParam.AddVolatileData(new GH_Path(0), 0, new GH_Number(z));
-                }
-                else if (pointComponent.Params.Input.Count == 1)
-                {
-                    // Assuming this is a Point component with a single Point3d input
-                    var param = pointComponent.Params.Input[0];
-                    var pointData = new GH_Point(new Point3d(x, y, z));
-                    param.AddVolatileData(new GH_Path(0), 0, pointData);
-                }
-
-                // Force a proper refresh
-                pointComponent.ExpireSolution(true);
-                doc.NewSolution(true);
-                Instances.ActiveCanvas.Refresh();
-
-                System.Diagnostics.Debug.WriteLine("Point component added successfully");
-            }
-            catch (Exception ex)
-            {
-                System.Diagnostics.Debug.WriteLine("Error adding point component: " + ex.Message);
-            }
-        }
 
         protected override void SolveInstance(IGH_DataAccess DA)
         {
+            if (!DA.GetData(0, ref APIKey)) { return; }
+
             DA.SetData(0, _lastResponse);
         }
 
@@ -284,6 +205,11 @@ namespace Copilot
         {
             //string message = UserInput.Text.Trim();
             if (string.IsNullOrEmpty(UserInput.Text)) return;
+
+            if (Response.Text != String.Empty)
+                Response.Append("\n");
+
+            Response.Append(">  " + UserInput.Text + "\n");
 
             Solve(UserInput.Text);
 
@@ -299,13 +225,9 @@ namespace Copilot
                 {
                     dynamic sys = PyNet.Import("sys");
                     // Resolve %AppData% to its full path
-                    string appDataPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
-
-                    // Construct the full path to the TT folder
-                    string ttPath = System.IO.Path.Combine(appDataPath, @"Grasshopper\Libraries\PythonScripts");
 
                     // Append the resolved path to Python's sys.path
-                    sys.path.append(ttPath);
+                    sys.path.append(GHInstallationLocation);
                     dynamic _ghScript = PyNet.Import("grasshopper_component_finder");
 
                     if (_ghScript == null)
@@ -315,15 +237,21 @@ namespace Copilot
                     }
 
                     //temporary
-                    string arg1 = "";
-                    string arg2 = "";
+                    string componentsJsonPath = System.IO.Path.Combine(GHInstallationLocation, "grasshopper_components.json");
+                    string responseJsonPath = System.IO.Path.Combine(GHInstallationLocation, "response.json");
 
                     dynamic ghScriptClass = _ghScript.GetAttr("grasshopper_component_finder");
                     dynamic ghScriptInstance = ghScriptClass.Invoke();
-                    PyObject result = ghScriptInstance.main(query, @"C:\Users\wiley\AppData\Roaming\Grasshopper\Libraries\PythonScripts\grasshopper_components.json", "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", @"C:\Users\wiley\AppData\Roaming\Grasshopper\Libraries\PythonScripts\response.json");
+                    PyObject result = ghScriptInstance.main(query, componentsJsonPath, APIKey, responseJsonPath);
 
+                    
+                    JObject mainResponse = JObject.Parse(result.ToString());
+                    JsonResponse jsonData = mainResponse["json_data"].ToObject<JsonResponse>();
+                    if (Response.Text != String.Empty)
+                        Response.Append( "\n");
 
-                    Response.Text = result.ToString();
+                    Response.Append("<        "+jsonData.explanation + "\n") ;
+
                     Response.Invalidate();
                 }
             }

@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("GrasshopperComponent")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+72df881efda0e72cab699ad9bce58068a244348d")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e550e213273c606b4428776fd150058600873d0a")]
 [assembly: System.Reflection.AssemblyProductAttribute("GrasshopperComponent")]
 [assembly: System.Reflection.AssemblyTitleAttribute("GrasshopperComponent")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

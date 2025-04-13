@@ -21,28 +21,46 @@ import requests
 import os
 import sys
 import argparse
+import logging
+
+
+# Ensure the directory exists
+log_directory = "C:\\Temp"
+if not os.path.exists(log_directory):
+    os.makedirs(log_directory)
+ 
+# Configure logging to write to a specific file path
+log_file_path = os.path.join(log_directory, "debug_log_GHC.txt")
+logging.basicConfig(filename=log_file_path, level=logging.DEBUG, 
+                    format='%(asctime)s - %(levelname)s - %(message)s')
 
 class grasshopper_component_finder:
 
     def load_component_database(file_path):
         """Load component information from JSON file"""
+        logging.debug(f"Loading component database from {file_path}...")
         try:
             if not os.path.exists(file_path):
                 return {"error": f"File not found: {file_path}"}
+            logging.debug(f"File found: {file_path}")
         
             with open(file_path, 'r') as f:
                 components = json.load(f)
+            logging.debug(f"Loaded {len(components)} components from {file_path}")
+            logging.debug(f"Component data: {components}")
         
             # Check if we have a meaningful JSON structure
             if isinstance(components, list) and len(components) > 0:
                 print(f"Loaded {len(components)} components")
                 return {"components": components}
+                logging.debug(f"Component data structure is valid")
             else:
                 return {"error": "Invalid component data structure"}
+                logging.debug(f"Component data structure is invalid")
         except Exception as e:
             return {"error": f"Error loading component database: {str(e)}"}
 
-    def select_relevant_components(components, prompt, max_components=15):
+    def select_relevant_components(self, components, prompt, max_components=15):
         """
         Select the most relevant components based on the prompt.
         This is a simple keyword matching approach.
@@ -104,7 +122,7 @@ class grasshopper_component_finder:
         scored_components.sort(reverse=True, key=lambda x: x[0])
         return [component for score, component in scored_components[:max_components]]
 
-    def call_llm_api(prompt, components_data, api_key):
+    def call_llm_api(self, prompt, components_data, api_key):
         """Call LLM API with the prompt and component information"""
         # You can replace this with any LLM API you have access to
         # This example uses Anthropic's Claude API
@@ -122,7 +140,7 @@ class grasshopper_component_finder:
         else:
             # Find relevant components based on the prompt
             all_components = components_data.get("components", [])
-            relevant_components = select_relevant_components(all_components, prompt)
+            relevant_components = self.select_relevant_components(all_components, prompt)
         
             # Format component information for the prompt
             components_info = []
@@ -256,7 +274,7 @@ class grasshopper_component_finder:
         except Exception as e:
             return {"error": f"Error calling LLM API: {str(e)}"}
 
-    def main(prompt=None, components_file=None, api_key=None, output_file=None, json_only=False):
+    def main(self, prompt=None, components_file=None, api_key=None, output_file=None, json_only=False):
         """
         Main function that can be called directly with parameters or from command line
     
@@ -287,7 +305,13 @@ class grasshopper_component_finder:
             api_key = args.api_key
             output_file = args.output
             json_only = args.json_only
-    
+        
+        logging.debug(f"Prompt: {prompt}")
+        logging.debug(f"Components file: {components_file}")
+        logging.debug(f"API key: {api_key}")
+        logging.debug(f"Output file: {output_file}")
+        logging.debug(f"JSON only: {json_only}")
+
         # Validate required parameters
         if prompt is None or components_file is None or api_key is None:
             error_msg = "Missing required parameters: prompt, components_file, and api_key are required"
@@ -297,12 +321,17 @@ class grasshopper_component_finder:
             else:
                 print(f"Error: {error_msg}")
             return {"error": error_msg}
-    
+        
+        logging.debug("Parameters validated successfully")
+
         # Load component database
         if not json_only:
             print(f"Loading component database from {components_file}...")
-        component_data = load_component_database(components_file)
-    
+        component_data = grasshopper_component_finder.load_component_database(components_file)
+        
+        logging.debug(f"Component file loaded: {components_file}")
+        logging.debug(f"Component data loaded: {component_data}")
+
         if "error" in component_data:
             error_msg = f"Error: {component_data['error']}"
             if json_only:
@@ -311,12 +340,16 @@ class grasshopper_component_finder:
             else:
                 print(error_msg)
             return {"error": component_data['error']}
-    
+
+        logging.debug("Component data loaded successfully")
+
         # Call LLM API with the component data
         if not json_only:
             print(f"Analyzing prompt: '{prompt}'")
-        result = call_llm_api(prompt, component_data, api_key)
-    
+        result = self.call_llm_api(prompt, component_data, api_key)
+        
+        logging.debug(f"LLM API result: {result}")
+
         if "error" in result:
             error_msg = f"Error: {result['error']}"
             if json_only:
@@ -325,7 +358,8 @@ class grasshopper_component_finder:
             else:
                 print(error_msg)
             return {"error": result['error']}
-    
+        
+            logging.debug("LLM API call successful")
         # Handle JSON output
         if "json_data" in result:
             json_output = json.dumps(result["json_data"], indent=2)
@@ -341,9 +375,12 @@ class grasshopper_component_finder:
         elif "json_error" in result:
             if not json_only:
                 print(f"Warning: Could not parse LLM output as JSON: {result['json_error']}")
+
+        logging.debug("Parsing LLM response")
     
         # Parse the response for human-readable output
         response_text = result["response"]
+        logging.debug(f"Response text: {response_text}")
     
         # If we have valid JSON, format it nicely
         if "json_data" in result:
@@ -361,6 +398,7 @@ class grasshopper_component_finder:
                 connections_text.append(f"- Connect {conn.get('fromComponent', 'Unknown')} ({conn.get('fromOutput', 'Unknown')}) to {conn.get('toComponent', 'Unknown')} ({conn.get('toInput', 'Unknown')})")
         
             connections = "\n".join(connections_text)
+            logging.debug("Parsed JSON data successfully")
         else:
             # Fallback to simple text parsing
             parts = response_text.split("\n\n", 1)
@@ -371,40 +409,30 @@ class grasshopper_component_finder:
                 suggested_components = "Component Suggestions:"
                 explanation = response_text
             connections = "No connection information available"
-    
+        
+            logging.debug("Formatting output")
+
         # Format the output
         output = f"""
-    === GRASSHOPPER COMPONENT FINDER ===
+        === GRASSHOPPER COMPONENT FINDER ===
 
-    PROMPT:
-    {prompt}
+        PROMPT:
+        {prompt}
 
-    COMPONENT SUGGESTIONS:
-    {suggested_components}
+        COMPONENT SUGGESTIONS:
+        {suggested_components}
 
-    CONNECTIONS:
-    {connections}
+        CONNECTIONS:
+        {connections}
 
-    DETAILED EXPLANATION:
-    {explanation}
-    """
-    
-        if "json_data" in result:
-            output += f"""
-    JSON DATA:
-    {json.dumps(result["json_data"], indent=2)}
-    """
-    
-        # Output the result
-        if output_file:
-            with open(output_file, 'w') as f:
-                f.write(output)
-            print(f"Results written to {output_file}")
-        else:
-            print(output)
-    
+        DETAILED EXPLANATION:
+        {explanation}
+        
+        """
+
         # Return the result
         return result
+        logging.debug("Main function completed successfully")
 
 if __name__ == "__main__":
     main()
